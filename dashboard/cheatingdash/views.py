@@ -2,6 +2,8 @@ from django.shortcuts import render
 
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
+from cheatingdash.models import PaytmHistory
+
 
 # Create your views here.
 def Index(request):
@@ -26,3 +28,8 @@ def Login(request):
 def Logout(request):
     logout(request)
     return redirect('/')
+
+def paymentStatus(request):
+    user = PaytmHistory.objects.all()
+    print(user)
+    return render(request, 'paymentstatus.html', {'users':user})
