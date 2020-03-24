@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
@@ -9,6 +9,11 @@ def Index(request):
     print(user)
     return HttpResponse('Thanks')
 
+def userList(request):
+    user = User.objects.all()
+    print(user)
+    return render(request, 'userlist.html', {'users':user})
+
 
 def Login(request):
     if request.method == 'POST':
@@ -18,9 +23,7 @@ def Login(request):
         if user:
             if user.is_active:
                 login(request,user)
-                user = User.objects.all()
-                print(user)
-                return render(request, 'userlist.html', {'users':user})
+                return redirect('userList')
         else:
             return HttpResponse("Invalid login details..")
     else:
@@ -30,3 +33,8 @@ def Login(request):
 def Logout(request):
     logout(request)
     return redirect('/')
+
+def Delete(request, id):
+    user = User.objects.get(id = id)
+    user.delete()
+    return redirect('userList')

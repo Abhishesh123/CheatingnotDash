@@ -6,7 +6,6 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-<link rel="stylesheet" href="style.css">
 <title>user List</title>
 </head>
 <body>
@@ -31,7 +30,7 @@
         <td>{{user.last_name}}</td>
         <td>{{user.email}}</td>
         <td><a href="#" target="_blank" rel="noopener noreferrer" class="text-center btn btn-danger">Details</a></td>
-        <td><a href="#" target="_blank" rel="noopener noreferrer" class="text-center btn btn-success">Delete</a></td>
+        <td><a href="{% url 'Delete' user.id %}" rel="noopener noreferrer" class="text-center btn btn-success">Delete</a></td>
         <td><a href="#" target="_blank" rel="noopener noreferrer" class="text-center btn btn-success">Update</a></td>
         
        
