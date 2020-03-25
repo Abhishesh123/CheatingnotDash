@@ -38,3 +38,8 @@ def Delete(request, id):
     user = User.objects.get(id = id)
     user.delete()
     return redirect('userList')
+
+
+def Details(request, id):
+    user = User.objects.get(id = id)
+    return render(request, 'details.html', {'user': user})

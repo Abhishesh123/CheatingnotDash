@@ -8,5 +8,6 @@ urlpatterns = [
     path('login', views.Login),
     path('logout', views.Logout, name='Logout'),
     path('delete/<int:id>', views.Delete, name='Delete'),
+    path('details/<int:id>', views.Details, name='Details'),
     # path('details', views.Details, name='Details'),
 ]

@@ -29,7 +29,7 @@
         <td>{{user.first_name}}</td>
         <td>{{user.last_name}}</td>
         <td>{{user.email}}</td>
-        <td><a href="#" target="_blank" rel="noopener noreferrer" class="text-center btn btn-danger">Details</a></td>
+        <td><a href="{% url 'Details' user.id %}" rel="noopener noreferrer" class="text-center btn btn-danger">Details</a></td>
         <td><a href="{% url 'Delete' user.id %}" rel="noopener noreferrer" class="text-center btn btn-success">Delete</a></td>
         <td><a href="#" target="_blank" rel="noopener noreferrer" class="text-center btn btn-success">Update</a></td>
         
