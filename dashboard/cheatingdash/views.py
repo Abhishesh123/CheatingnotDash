@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
-from cheatingdash.models import PaytmHistory
+from cheatingdash.models import PaytmHistory,StatusHistory
 
 
 # Create your views here.
@@ -32,4 +32,14 @@ def Logout(request):
 def paymentStatus(request):
     user = PaytmHistory.objects.all()
     print(user)
+    # metrics = {
+    #         'total': count(id),
+    #         'total_sales': Sum(TXNAMOUNT),
+    #     }
     return render(request, 'paymentstatus.html', {'users':user})
+
+def StatusHistorys(request):
+    users = StatusHistory.objects.all()
+    
+    return render(request, 'statushistory.html', {'users':users})
+

@@ -9,11 +9,13 @@
 <title>Payment History</title>
 </head>
 <body>
+    <h1 class="text-center text-success"> Status History</h1>
 <table class="table">
     <thead>
+
         <tr>
             <th>User ID</th>
-            <th>Username</th>
+            
             <th>Order Id</th>
             <th>TXNDATE</th>
             <th>TXNID</th>
@@ -31,17 +33,13 @@
         {% for user in users %}
        <tr>
         <td>{{user.id}}</td>
-        <td>{{user.user}}</td>
         <td>{{user.ORDERID}}</td>
         <td>{{user.TXNDATE}}</td>
         <td>{{user.TXNID}}</td>
         <td>{{user.BANKNAME}}</td>
         <td>{{user.MID}}</td>
         <td>{{user.TXNAMOUNT}}</td>
-                {% for users in metrics %}
-<td>{{users.total_sales}}</td>
-       {% endfor %}
-
+ 
 
         <td>{{user.STATUS}}</td>
 
