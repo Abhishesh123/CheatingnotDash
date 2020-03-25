@@ -10,5 +10,6 @@ urlpatterns = [
     path('login', views.Login),
     path('login', views.Logout, name='Logout'),
     path('paymentStatus/',views.paymentStatus,name='paymentStatus'),
-    path('StatusHistorys/',views.StatusHistorys,name='StatusHistory')
+    path('StatusHistorys/',views.StatusHistorys,name='StatusHistory'),
+    path('PaydetailStatus/<int:id>', views.PaydetailStatus, name='PaydetailStatus'),
 ]

@@ -43,3 +43,7 @@ def StatusHistorys(request):
     
     return render(request, 'statushistory.html', {'users':users})
 
+def PaydetailStatus(request, id):
+    user = StatusHistory.objects.get(id = id)
+    return render(request, 'paydetailstatus.html', {'user': user})
+
