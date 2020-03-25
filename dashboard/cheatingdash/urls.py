@@ -12,4 +12,6 @@ urlpatterns = [
     path('paymentStatus/',views.paymentStatus,name='paymentStatus'),
     path('StatusHistorys/',views.StatusHistorys,name='StatusHistory'),
     path('PaydetailStatus/<int:id>', views.PaydetailStatus, name='PaydetailStatus'),
+    path('Paymentdetail/<int:id>', views.Paymentdetail, name='Paymentdetail'),
+
 ]

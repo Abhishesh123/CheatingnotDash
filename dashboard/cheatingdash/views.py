@@ -47,3 +47,7 @@ def PaydetailStatus(request, id):
     user = StatusHistory.objects.get(id = id)
     return render(request, 'paydetailstatus.html', {'user': user})
 
+def Paymentdetail(request, id):
+    user = PaytmHistory.objects.get(id = id)
+    return render(request, 'paymentdetails.html', {'user': user})
+

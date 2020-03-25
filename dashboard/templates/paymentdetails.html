@@ -9,7 +9,7 @@
 <title>user List</title>
 </head>
 <body>
-<h1 class="text-center btn-primary">Status History </h1>
+<h1 class="text-center btn-primary">Payments Details </h1>
 <div class="container-fluid mt-5">
     <div class="row">
         <div class="col-xl-6 offset-xl-1">
@@ -19,6 +19,12 @@
                     <tr>
                         <th>User ID</th>
                         <td>{{user.id}}</td>
+                       
+
+                    </tr>
+                    <tr>
+                        <th>User Name</th>
+                        <td>{{user.user}}</td>
                        
 
                     </tr>
@@ -60,21 +66,13 @@
                         <td>{{user.TXNAMOUNT}}</td>
 
                     </tr>
-                    <tr>
-                        <th>REFUNDAMT</th>
-                        <td>{{user.REFUNDAMT}}</td>
-
-                    </tr>
+                    
                     <tr>
                         <th>RESPMSG</th>
                         <td>{{user.RESPMSG}}</td>
 
                     </tr>
-                    <tr>
-                        <th>TXNTYPE</th>
-                        <td>{{user.TXNTYPE}}</td>
-
-                    </tr>
+                    
                     <tr>
                         <th>STATUS</th>
                         <td>{{user.STATUS}}</td>
@@ -92,7 +90,7 @@
     </div>
 </div>
 <div class="text-center">
-    <a href="/StatusHistorys" class="btn btn-primary text-center">Back</a>
+    <a href="/paymentStatus" class="btn btn-primary text-center">Back</a>
 </div>
   
    
