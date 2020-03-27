@@ -6,9 +6,14 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    contact = models.CharField(max_length=15,blank=True)
-    priority = models.CharField(max_length=30,blank=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE,null=True, blank=True)
+    address = models.TextField( blank=True, null=True)
+    age=models.CharField(max_length=4,null=True, blank=True)
+    phone=models.CharField(max_length=11,null=True, blank=True)
+    city=models.CharField(max_length=40,null=True, blank=True)
+    create_at = models.DateTimeField(auto_now_add=True)
+
+
 
     def __unicode__(self):
         return self.user.username
