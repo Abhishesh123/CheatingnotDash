@@ -3,6 +3,8 @@ from django.conf import settings
 from django.utils import timezone
 from datetime import datetime
 from django.contrib.auth.models import User
+from django.utils.translation import ugettext_lazy as _
+
 
 # Create your models here.
 class UserProfile(models.Model):
@@ -62,3 +64,25 @@ class StatusHistory(models.Model):
 
     def __unicode__(self):
         return self.STATUS
+class userSubscriptions(models.Model):
+    INACTIVE = 0
+    ACTIVE = 1
+    STATUS = (
+        (INACTIVE, _('Inactive')),
+        (ACTIVE, _('Active')),
+    )
+    user = models.OneToOneField(User, on_delete=models.CASCADE,null=True, blank=True)
+    SubsplanName=models.CharField(max_length=4,null=True, blank=True)
+    durationMonth= models.IntegerField()
+    price= models.IntegerField()
+    BoostCount =  models.IntegerField()
+    BoostMinute = models.IntegerField()
+    SuperLikeCount=models.IntegerField()
+    status  = models.IntegerField(default=0, choices=STATUS)
+    class Meta:
+        app_label = 'cheatingdash'
+
+    def __unicode__(self):
+        return self.status
+
+        

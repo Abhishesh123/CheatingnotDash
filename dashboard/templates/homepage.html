@@ -20,7 +20,7 @@
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <a class="navbar-brand" href="index.html">CheatingNot Dashbord</a><button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button
+            <a class="navbar-brand" href="#">CheatingNot Dashbord</a><button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button
             ><!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
                 <div class="input-group">
@@ -55,7 +55,7 @@
                             <div class="sb-sidenav-menu-heading">Interface</div>
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
-                                User
+                                 Manage User
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
                             ></a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
@@ -63,7 +63,7 @@
                             </div>
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-inr"></i></div>
-                                Transaction Details
+                                Payment Details
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
                             ></a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
@@ -81,26 +81,26 @@
                                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
                                     ></a>
                                     <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="login.html">Login</a><a class="nav-link" href="register.html">Register</a><a class="nav-link" href="password.html">Forgot Password</a></nav>
+                                        <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="#">Login</a><a class="nav-link" href="#">Register</a><a class="nav-link" href="#"> Reset Password</a></nav>
                                     </div>
                                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError"
-                                        >Error
+                                        >Report
                                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
                                     ></a>
                                     <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="401.html">401 Page</a><a class="nav-link" href="404.html">404 Page</a><a class="nav-link" href="500.html">500 Page</a></nav>
+                                        <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="#"> Page</a><a class="nav-link" href="#"> Page</a><a class="nav-link" href="#"> Page</a></nav>
                                     </div>
                                 </nav>
                             </div>
-                            <!-- <div class="sb-sidenav-menu-heading">Addons</div>
-                            <a class="nav-link" href="charts.html"
+                            <div class="sb-sidenav-menu-heading">Addons</div>
+                            <a class="nav-link" href="/userSubscription"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                                Charts</a
-                            ><a class="nav-link" href="tables.html"
+                                User Subscription</a
+                            ><a class="nav-link" href="#"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Tables</a
                             >
-                        </div> -->
+                        </div>
                     </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
@@ -109,12 +109,10 @@
                 </nav>
             </div>
             <div id="layoutSidenav_content">
-                <main>
+                <main style="background-color: #e6ffff;">
                     <div class="container-fluid">
                         <h1 class="mt-4">Dashboard</h1>
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Dashboard</li>
-                        </ol>
+                       
                         <div class="row">
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-primary text-white mb-4">
@@ -130,18 +128,19 @@
                             </div>
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-warning text-white mb-4">
-                                    <div class="card-body">Total Sales</div>
+                                    <div class="card-body">Total Subscriptions : 
+                                    {{userSubscriptions}}</div>
 
 <!--                                     <div class=" <text-center"><h4>12</h4></div>
  -->                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
+                                        <a class="small text-white stretched-link" href="/userSubscription">View Details</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-success text-white mb-4">
-                                    <div class="card-body text-center">Actice User</div>
+                                    <div class="card-body text-center">Today User</div>
                                   <!--    <div class="text-center"><h4>12</h4> -->
                                     <div class="card-footer d-flex align-items-center justify-content-between">
                                         <a class="small text-white stretched-link" href="#">View Details</a>
@@ -151,7 +150,7 @@
                             </div>
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-danger text-white mb-4">
-                                    <div class="card-body">Inactive User</div>
+                                    <div class="card-body"> Today Subscriptions</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
                                         <a class="small text-white stretched-link" href="#">View Details</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>

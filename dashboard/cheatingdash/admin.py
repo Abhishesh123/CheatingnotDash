@@ -1,6 +1,6 @@
 from django.contrib import admin
 from cheatingdash.models import PaytmHistory
-from cheatingdash.models import StatusHistory,UserProfile
+from cheatingdash.models import StatusHistory,UserProfile,userSubscriptions
 
 # Register your models here.
 class PaytmHistoryAdmin(admin.ModelAdmin):
@@ -24,3 +24,9 @@ class UserProfileAdmin(admin.ModelAdmin):
 
 
 admin.site.register(UserProfile, UserProfileAdmin)
+
+class userSubscriptionsAdmin(admin.ModelAdmin):
+    list_display = ('user','SubsplanName','price','status' )
+
+
+admin.site.register(userSubscriptions, userSubscriptionsAdmin)
