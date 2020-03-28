@@ -16,30 +16,49 @@
 
     <div class="container-fluid">
         <div class="row mb-5">
-           
-            <div class="col-xl-4 offset-xl-2">
+
+            <div class="col-xl-4">
                 <form action="{% url 'searchUser' %}" method="post">
-                {% csrf_token %}
-                <input type="text" name="searchnow" class="form form-control" placeholder="First name, Last name, email, username">
-          
+                    {% csrf_token %}
+                    <input type="text" name="searchnow" class="form form-control"
+                        placeholder="First name, Last name, email, username">
+
             </div>
 
             <div class="co-xl-2">
                 <input type="date" name="datejoined" class="form-control" id="example-date-input">
             </div>
 
+
+            <div class="col-xl-2">
+                <select name="filter" id="selectBox" class="form-control rounded" onchange="filterNow(this.value)">
+                    {% if columns %}
+                    <option class="form-control" disabled selected>Filter</option>
+                    {% for i in columns %}
+
+                    <option value="{{i}}">{{i}}</option>
+                    {% endfor %}
+                    {% endif %}
+                </select>
+            </div>
+
+            <div class="col-xl-2" id="filterssf">
+               
+                <input type="text" name="chankis" class="form-control" placeholder= "Type ${selectedValue} here">
+            </div>
+
             <div class="col-xl-2">
                 <button type="submit" class="btn btn-info">Search Now</button>
-            </form>
-            
+                </form>
+
             </div>
-       
+
         </div>
     </div>
 
-  {% if Total %}
-  <p>Total Users:-  {{Total}} <a href="{% url 'userList' %}">All</a></p>
-  {% endif %}
+    {% if Total %}
+    <p>Total Users:- {{Total}} <a href="{% url 'userList' %}">All</a></p>
+    {% endif %}
     <table class="table">
         <thead>
             <tr>
@@ -74,6 +93,40 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script>
+        document.getElementById('filterss').style.display = "none";
+        function filterNow(selectedValue) {
+            alert(selectedValue)
+            document.getElementById('filterss').style.display = "block";
+            if (selectedValue == 'Age') {
+                document.getElementById('filterss').innerHTML = `<input type="text" name="chankis" class="form-control" placeholder= "Type ${selectedValue} here">`
+            }
+
+            else if (selectedValue == 'City') {
+                document.getElementById('filterss').innerHTML = `<input type="text" name="chanki" class="form-control" placeholder= "Type ${selectedValue} here">`
+            }
+
+            else if (selectedValue == 'Country') {
+                document.getElementById('filterss').innerHTML = `<input type="text" name="chanki" class="form-control" placeholder= "Type ${selectedValue} here">`
+            }
+            else if (selectedValue == 'Gender') {
+                document.getElementById('filterss').innerHTML = `<select name="chanki" id="" class="form form-control">
+                <option value="">Male</option>
+                <option value="">Femae</option>
+                <option value="">Other</option>
+            </select>`;
+            }
+
+            else if (selectedValue == 'Active') {
+                document.getElementById('filterss').style.display = "none";
+            }
+
+
+
+        }
+    </script>
+
+
 </body>
 
 </html>

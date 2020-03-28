@@ -11,8 +11,14 @@ def Index(request):
 
 def userList(request):
     user = User.objects.all()
+    column_list = ['Active','Age','City','Country','Gender']
     print(user.count())
-    return render(request, 'userlist.html', {'users':user,'Total':user.count()})
+    context =  {
+        'users':user,
+        'Total':user.count(),
+        'columns':column_list
+        }
+    return render(request, 'userlist.html',context)
     
 
 
@@ -49,8 +55,27 @@ def Details(request, id):
 def searchUser(request):
     if request.method == 'POST':
         data = request.POST['searchnow']
-        data = request.POST['datejoined']
+        date_joined = request.POST['datejoined']
+        filters = request.POST['filter']
+        value = request.POST['chankis']
+        print(value)
         print(data)
-        user  = User.objects.filter(first_name__icontains= data) or User.objects.filter(last_name__icontains= data) or User.objects.filter(username__icontains= data) or User.objects.filter(email__icontains= data) or User.objects.filter(date_joined__icontains= data)
+        print(date_joined)
+        print(filters)
+       
+        user  = User.objects.filter(first_name__icontains= data) or User.objects.filter(last_name__icontains= data) or User.objects.filter(username__icontains= data) or User.objects.filter(email__icontains= data) or User.objects.filter(date_joined__icontains= date_joined)
 
-        return render(request, 'userlist.html', {'users':user, 'Total':user.count()})
+        if filters == 'Active':
+            user  = User.objects.filter(is_active = True)
+
+        elif filters == 'Age' and  value == 21:
+            print(value)
+
+        
+        column_list = ['Active','Age','City','Country','Gender']
+        context =  {
+            'users':user,
+            'Total':user.count(),
+            'columns':column_list
+            }
+        return render(request, 'userlist.html', context)
