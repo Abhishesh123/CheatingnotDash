@@ -42,10 +42,32 @@
                 </select>
             </div>
 
-            <div class="col-xl-2" id="filterssf">
-               
-                <input type="text" name="chankis" class="form-control" placeholder= "Type ${selectedValue} here">
+            
+            
+            <div class="col-xl-2" id="age">
+                <input type="text" name="age" class="form-control" placeholder= "Type Age Here">  
+                
             </div>
+            <div class="col-xl-2" id="city">
+                <input type="text" name="city" class="form-control" placeholder= "Type City Here">  
+                
+            </div>
+            <div class="col-xl-2" id="country">
+                <input type="text" name="country" class="form-control" placeholder= "Type Country Here">  
+                
+            </div>
+            <div class="col-xl-2" id="gender">
+                <select name="gender" id="" class="form form-control">
+                   
+
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                    
+                </select>
+                
+            </div>
+            
 
             <div class="col-xl-2">
                 <button type="submit" class="btn btn-info">Search Now</button>
@@ -94,34 +116,57 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script>
-        document.getElementById('filterss').style.display = "none";
+         document.getElementById('age').style.display = "none";
+         document.getElementById('city').style.display = "none";
+         document.getElementById('country').style.display = "none";
+         document.getElementById('gender').style.display = "none";
         function filterNow(selectedValue) {
-            alert(selectedValue)
-            document.getElementById('filterss').style.display = "block";
+          
+            
             if (selectedValue == 'Age') {
-                document.getElementById('filterss').innerHTML = `<input type="text" name="chankis" class="form-control" placeholder= "Type ${selectedValue} here">`
+                document.getElementById('age').style.display = "block";
+                document.getElementById('city').style.display = "none";
+                document.getElementById('country').style.display = "none";
+                var divs = document.getElementById('gender')
+                divs.parentNode.removeChild(divs)
+                    
+                
             }
 
             else if (selectedValue == 'City') {
-                document.getElementById('filterss').innerHTML = `<input type="text" name="chanki" class="form-control" placeholder= "Type ${selectedValue} here">`
+                document.getElementById('age').style.display = "none";
+                document.getElementById('city').style.display = "block";
+                document.getElementById('country').style.display = "none";
+                var divs = document.getElementById('gender')
+                divs.parentNode.removeChild(divs)
+                        
+                
+
             }
 
             else if (selectedValue == 'Country') {
-                document.getElementById('filterss').innerHTML = `<input type="text" name="chanki" class="form-control" placeholder= "Type ${selectedValue} here">`
+                document.getElementById('age').style.display = "none";
+                document.getElementById('city').style.display = "none";
+                document.getElementById('country').style.display = "block";
+                var divs = document.getElementById('gender')
+                divs.parentNode.removeChild(divs)
             }
             else if (selectedValue == 'Gender') {
-                document.getElementById('filterss').innerHTML = `<select name="chanki" id="" class="form form-control">
-                <option value="">Male</option>
-                <option value="">Femae</option>
-                <option value="">Other</option>
-            </select>`;
+                document.getElementById('age').style.display = "none";
+                document.getElementById('city').style.display = "none";
+                document.getElementById('country').style.display = "none";
+                document.getElementById('gender').style.display = "block";
+                        
             }
 
             else if (selectedValue == 'Active') {
-                document.getElementById('filterss').style.display = "none";
+                document.getElementById('age').style.display = "none";
+                document.getElementById('city').style.display = "none";
+                document.getElementById('country').style.display = "none";
+                document.getElementById('gender').style.display = "none";
             }
 
-
+            
 
         }
     </script>

@@ -57,10 +57,27 @@ def searchUser(request):
         data = request.POST['searchnow']
         date_joined = request.POST['datejoined']
         filters = request.POST['filter']
-        value = request.POST['chankis']
-        print(value)
-        print(data)
-        print(date_joined)
+        
+        try:
+            age = request.POST['age']
+            city = request.POST['city']
+            country = request.POST['country']
+            
+            print(age)
+            print(city)
+            print(country)
+            
+            try:
+                gender = request.POST['gender']
+                print(gender)
+
+            except KeyError:
+                pass
+
+        except KeyError:
+            pass
+        
+        
         print(filters)
        
         user  = User.objects.filter(first_name__icontains= data) or User.objects.filter(last_name__icontains= data) or User.objects.filter(username__icontains= data) or User.objects.filter(email__icontains= data) or User.objects.filter(date_joined__icontains= date_joined)
@@ -68,8 +85,7 @@ def searchUser(request):
         if filters == 'Active':
             user  = User.objects.filter(is_active = True)
 
-        elif filters == 'Age' and  value == 21:
-            print(value)
+       
 
         
         column_list = ['Active','Age','City','Country','Gender']
