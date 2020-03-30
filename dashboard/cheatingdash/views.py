@@ -63,6 +63,24 @@ def userList(request):
     print(user)
     return render(request, 'userlisting.html', {'users':user})
 
+
+def userListCSV(request):
+
+    # Get all data from UserDetail Databse Table
+    users = UserProfile.objects.all()
+
+    # Create the HttpResponse object with the appropriate CSV header.
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="userlist.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['User ID', 'Username', 'Age ','Phone', 'Address','Created Date'])
+
+    for user in users:
+        writer.writerow([user.id, user.user, user.age, user.phone,user.address,user.create_at|date])
+
+    return response
+
 def searchUser(request):
     if request.method == 'POST':
         data = request.POST['q']

@@ -111,13 +111,42 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h1 class="mt-4">Dashboard</h1>
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Dashboard</li>
-                        </ol>
+                        <h1 class="mt-4">Payments History</h1>
+                       
                    
                         <div class="card mb-4">
-                            <div class="card-header"><i class="fas fa-table mr-1"></i>Payments History</div>
+                            <div class="card-header"><i class="fas fa-table mr-1"></i>Payments History management</div>
+                            <div class="row">
+                            <div class="col-md-2">
+   <form action="/userListCSV/"  method="post">
+        {% csrf_token %}
+  
+  <button type="submit" class="btn btn-info">Export</button>
+
+</form>
+  </div>
+<!-- </div> -->
+<div class="col-md-5">
+    <form action="/datefilter/"  method="post">
+        {% csrf_token %}
+  <label for="birthday">From</label>
+  <input type="date"  name="start">
+    <label for="birthday">To</label>
+
+  <input type="date"  name="end">
+
+  <button type="submit" class="btn btn-info">Click</button>
+
+</form>
+    </div>
+<div class="col-md-5">
+ <form action="/search/" method="post">
+                    {% csrf_token %}
+ <input type="text" name="q" placeholder="Search user name">
+ <button type="submit" class="btn btn-info">Search Now</button>
+</form>
+</div>
+</div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                    <table class="table">

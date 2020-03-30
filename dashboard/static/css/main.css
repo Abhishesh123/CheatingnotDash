@@ -6137,7 +6137,8 @@ button.bg-light:focus {
 }
 
 .bg-dark {
-  background-color: #343a40 !important;
+  background: rgb(148,63,251);
+background: linear-gradient(90deg, rgba(148,63,251,1) 0%, rgba(198,66,182,1) 48%, rgba(252,70,107,1) 100%);
 }
 
 a.bg-dark:hover, a.bg-dark:focus,
@@ -10157,17 +10158,17 @@ body {
 }
 
 .sb-sidenav-dark {
-  background-color: #212529;
-  color: rgba(255, 255, 255, 0.5);
+   background: rgb(148,63,251);
+background: linear-gradient(90deg, rgba(148,63,251,1) 0%, rgba(198,66,182,1) 48%, rgba(252,70,107,1) 100%); 
 }
 .sb-sidenav-dark .sb-sidenav-menu .sb-sidenav-menu-heading {
   color: rgba(255, 255, 255, 0.25);
 }
 .sb-sidenav-dark .sb-sidenav-menu .nav-link {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgb(255, 255, 255);
 }
 .sb-sidenav-dark .sb-sidenav-menu .nav-link .sb-nav-link-icon {
-  color: rgba(255, 255, 255, 0.25);
+  color: rgb(255, 255, 255);
 }
 .sb-sidenav-dark .sb-sidenav-menu .nav-link .sb-sidenav-collapse-arrow {
   color: rgba(255, 255, 255, 0.25);
@@ -10182,7 +10183,8 @@ body {
   color: #fff;
 }
 .sb-sidenav-dark .sb-sidenav-footer {
-  background-color: #343a40;
+  background: rgb(148,63,251);
+background: linear-gradient(90deg, rgba(148,63,251,1) 0%, rgba(198,66,182,1) 48%, rgba(252,70,107,1) 100%); 
 }
 
 .sb-sidenav-light {
