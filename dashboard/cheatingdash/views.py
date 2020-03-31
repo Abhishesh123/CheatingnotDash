@@ -95,3 +95,27 @@ def searchUser(request):
             'columns':column_list
             }
         return render(request, 'userlist.html', context)
+
+
+def ContactMe(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            subject = form.cleaned_data['subject']
+            message = form.cleaned_data['message']
+            recipientss = []
+            recipients  = form.cleaned_data['recipients']
+            cc_myself = form.cleaned_data['cc_myself']
+
+            sender = 'vishvajitrao@gmail.com'
+
+            if cc_myself:
+                recipientss.append(recipients) 
+
+            send_mail(subject,message,sender,recipientss)
+            return HttpResponse('<h1 style=text-align:center;>Thanks for using.. </h1>')
+    # if this is a POST  mishra.abhi9619@gmail.com request we need to process the form data
+
+    else:
+        form = ContactForm()
+    return render(request, 'contact.html', {'form': form})s
