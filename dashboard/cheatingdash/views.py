@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.db.models import Q
 import csv
+from django.http import JsonResponse
 
 # Create your views here.
 @login_required(login_url='/login/')
@@ -14,7 +15,16 @@ def Index(request):
     user = User.objects.all()
     totalusers=User.objects.all().count()
     userSubscription=userSubscriptions.objects.all().count()
-    return render(request,'homepage.html',{'users':user,'totalusers':totalusers,'userSubscriptions':userSubscription})
+    labels= ['January', 'February', 'March', 'April', 'May', 'June', 'July']
+    chartLabel =totalusers
+    
+    chartdata = [0, 10, 5, 2, 20, 30, 45]
+    data={
+                     "labels":labels,
+                     "chartLabel":chartLabel,
+                     "chartdata":chartdata,
+             }
+    return render(request,'homepage.html',{'users':user,'totalusers':totalusers,'userSubscriptions':userSubscription,'data':data})
 
 
 def Login(request):
@@ -135,6 +145,17 @@ def searchSubscriptions(request):
         user  = userSubscriptions.objects.filter(SubsplanName__icontains= data) 
 
         return render(request, 'userSubscriptions.html', {'users':user})
+
+def salescharts(srequest,format=None):
+        labels= ['January', 'February', 'March', 'April', 'May', 'June', 'July']
+        chartLabel =PaytmHistory.objects.all()
+        chartdata = [0, 10, 5, 2, 20, 30, 45]
+        data={
+                     "labels":labels,
+                     "chartLabel":chartLabel,
+                     "chartdata":chartdata,
+             }
+        return JsonResponse(data)
 
 
 
