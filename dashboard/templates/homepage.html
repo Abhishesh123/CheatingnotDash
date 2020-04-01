@@ -18,6 +18,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
 
   <!-- jQuery library -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -230,14 +231,14 @@
 
   <script>
     var endpoint = '/';
-    var data={{data|safe}};
-    console.log(data);
+    // console.log(data);
     $.ajax({
       method: "GET",
       url: endpoint,
       success: function(data) {
         var data={{data|safe}};
-
+            a=data.labels;
+        console.log(a);
         drawLineGraph(data, 'myChartline');
         drawBarGraph(data, 'myChartBar');
         // alert(data);
@@ -251,7 +252,8 @@
 
     function drawLineGraph(data, id) {
       var labels = data.labels;
-      var chartLabel = data.chartLabel;
+      // var chartLabel = data.chartLabel;
+      alert(labels)
       var chartdata = data.chartdata;
       var ctx = document.getElementById(id).getContext('2d');
       var chart = new Chart(ctx, {
@@ -262,7 +264,7 @@
         data: {
           labels: labels,
           datasets: [{
-            label: chartLabel,
+            label: '#usersales',
             backgroundColor: 'rgb(255, 100, 200)',
             borderColor: 'rgb(55, 99, 132)',
             data: chartdata,
@@ -272,10 +274,7 @@
         // Configuration options go here
         options: {
           scales: {
-            xAxes: [{
-              display: true
-            }],
-            yAxes: [{
+              xAxes: [{
               ticks: {
                 beginAtZero: true
               }
@@ -296,7 +295,7 @@
         data: {
           labels: labels,
           datasets: [{
-            label: chartLabel,
+            label: '#usersales',
             data: chartdata,
             backgroundColor: [
               'rgba(255, 99, 132, 0.2)',

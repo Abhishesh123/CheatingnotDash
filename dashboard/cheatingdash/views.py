@@ -7,22 +7,29 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.db.models import Q
 import csv
+from django.db.models import Sum
 from django.http import JsonResponse
 
 # Create your views here.
 @login_required(login_url='/login/')
 def Index(request):
+    labels = []
+    data = []
     user = User.objects.all()
     totalusers=User.objects.all().count()
     userSubscription=userSubscriptions.objects.all().count()
-    labels= ['January', 'February', 'March', 'April', 'May', 'June', 'July']
-    chartLabel =totalusers
-    
-    chartdata = [0, 10, 5, 2, 20, 30, 45]
+    PaytmHistorys=PaytmHistory.objects.values('user').annotate(TXNAMOUNT=Sum('TXNAMOUNT'))
+    print(PaytmHistorys)
+    # labels= ['January', 'February', 'March', 'April', 'May', 'June', 'July']
+    # chartLabel =userSubscriptionss
+    for entry in PaytmHistorys:
+        labels.append(entry['user'])
+        data.append(entry['TXNAMOUNT'])
+    # chartdata = [0, 10, 5, 2, 20, 30, 45]
     data={
                      "labels":labels,
-                     "chartLabel":chartLabel,
-                     "chartdata":chartdata,
+                     # "chartLabel":chartLabel,
+                     "chartdata":data,
              }
     return render(request,'homepage.html',{'users':user,'totalusers':totalusers,'userSubscriptions':userSubscription,'data':data})
 
