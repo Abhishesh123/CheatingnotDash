@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
 
 # Create your views here.
 def Index(request):
@@ -57,12 +58,12 @@ def searchUser(request):
         data = request.POST['searchnow']
         date_joined = request.POST['datejoined']
         filters = request.POST['filter']
-        
+        print(data)
         try:
             age = request.POST['age']
             city = request.POST['city']
             country = request.POST['country']
-            
+           
             print(age)
             print(city)
             print(country)
@@ -118,4 +119,4 @@ def ContactMe(request):
 
     else:
         form = ContactForm()
-    return render(request, 'contact.html', {'form': form})s
+    return render(request, 'contact.html', {'form': form})
