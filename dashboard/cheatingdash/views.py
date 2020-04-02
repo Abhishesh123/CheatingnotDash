@@ -163,6 +163,15 @@ def salescharts(srequest,format=None):
                      "chartdata":chartdata,
              }
         return JsonResponse(data)
+def resetpassword(request):
+
+    return render(request, 'resetpassword.html')
+
+def sendlink(request):
+    if request.method == 'POST':
+        data = request.POST['email']
+    return render(request, 'resetpassword.html')
+
 
 
 

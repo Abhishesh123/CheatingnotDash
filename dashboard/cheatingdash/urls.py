@@ -21,6 +21,8 @@ urlpatterns = [
     path('userSubscriptionDetails/<int:id>',views.userSubscriptionDetails,name="userSubscriptionDetails"),
     path('userSubscriptionsCSV/',views.userSubscriptionsCSV,name="userSubscriptionsCSV"),
     path('searchSubscriptions/',views.searchSubscriptions,name="searchSubscriptions"),
-    path('salescharts/',views.salescharts,name="salescharts") 
+    path('salescharts/',views.salescharts,name="salescharts"),
+    path('resetpassword/',views.resetpassword,name="resetpassword"),
+    path('sendlink/',views.sendlink,name="sendlink") 
 
 ]

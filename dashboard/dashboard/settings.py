@@ -116,6 +116,14 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'mishra.abhi9619@gmail.com'
+SERVER_EMAIL = 'mishra.abhi9619@gmail.com'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'mishra.abhi9619@gmail.com'
+EMAIL_HOST_PASSWORD = 'password'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 
 # Static files (CSS, JavaScript, Images)
