@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
@@ -38,6 +38,7 @@ def Login(request):
     if request.method == 'POST':
         username  = request.POST.get('username')
         password  = request.POST.get('password')
+        phone = request.POST.get('phone')
         user = authenticate(username = username, password=  password)
         if user:
             if user.is_active:
@@ -47,6 +48,15 @@ def Login(request):
             return HttpResponse("Invalid login details..")
     else:
         return render(request,'login.html')
+def Deleteuser(request, id):
+    user = UserProfile.objects.get(id = id)
+    user.delete()
+    return redirect('/userList')
+
+
+def Detailsuser(request, id):
+    user = UserProfile.objects.get(id = id)
+    return render(request, 'detailsuser.html', {'user': user})
     
 
 def Logout(request):

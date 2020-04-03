@@ -23,6 +23,8 @@ urlpatterns = [
     path('searchSubscriptions/',views.searchSubscriptions,name="searchSubscriptions"),
     path('salescharts/',views.salescharts,name="salescharts"),
     path('resetpassword/',views.resetpassword,name="resetpassword"),
-    path('sendlink/',views.sendlink,name="sendlink") 
+    path('sendlink/',views.sendlink,name="sendlink"),
+    path('Deleteuser/<int:id>',views.Deleteuser,name="Deleteuser"),
+    path('Detailsuser/<int:id>',views.Detailsuser,name="Detailsuser") 
 
 ]
