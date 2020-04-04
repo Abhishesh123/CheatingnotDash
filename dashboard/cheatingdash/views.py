@@ -181,6 +181,40 @@ def sendlink(request):
     if request.method == 'POST':
         data = request.POST['email']
     return render(request, 'resetpassword.html')
+def verify_phone(phone):
+    if len(phone)==10:
+        return (True,'valid')
+    elif '+' in phone:
+        return (False,'invalid')
+    else:
+        return None
+
+def send_otp(request): 
+    if request.method=="POST":
+        data = request.POST.dict()
+        data = json.loads(request.body)
+        phone = data['phone']
+        print(phone)
+        if verify_phone(data['phone'])[0]:
+            pass
+        else:
+            return JsonResponse({'status':False,'msg':'invalid number'})
+        msg91key = '263002Ai7e8CMeu55c6662f1'
+        appHashKey = '9Y8lf5JGJDZ'
+        digits="0123456789"
+        otp = ""
+        for i in range(6) : 
+            otp += digits[math.floor(random.random() * 10)] 
+        otp_msg = 'http://control.msg91.com/api/sendotp.php?authkey={0}&message=%3C%23%3E%20{1} is the OTP for Cheatingnot%3A%20%20{2}&sender=CHTNOT&mobile=91{3}&otp={4}'.format(msg91key,otp,appHashKey,phone,otp)
+#         print(otp_msg)
+        headers = {"content-type": "application/json"}
+        resp = requests.get(otp_msg,headers=headers)
+#         print(resp.status_code)
+        print(resp.json())
+        return HttpResponse('OTP send')
+    else:
+        return JsonResponse({'status':False,'msg':'invalid request'})
+    
 
 
 

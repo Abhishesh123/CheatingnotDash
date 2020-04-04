@@ -25,6 +25,7 @@ urlpatterns = [
     path('resetpassword/',views.resetpassword,name="resetpassword"),
     path('sendlink/',views.sendlink,name="sendlink"),
     path('Deleteuser/<int:id>',views.Deleteuser,name="Deleteuser"),
-    path('Detailsuser/<int:id>',views.Detailsuser,name="Detailsuser") 
+    path('Detailsuser/<int:id>',views.Detailsuser,name="Detailsuser"),
+    path('send_otp/',views.send_otp ,name="send_otp") 
 
 ]
