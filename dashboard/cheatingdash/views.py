@@ -1,9 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,  get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
-from cheatingdash.forms import ContactForm
+from cheatingdash.forms import ContactForm, userForm
 
 # Create your views here.
 def Index(request):
@@ -53,6 +53,16 @@ def Details(request, id):
     user = User.objects.get(id = id)
     return render(request, 'details.html', {'user': user})
 
+
+
+
+def Update(request, id):
+    obj = get_object_or_404(User,pk = id)    
+    form = userForm(request.POST or None, instance = obj)
+    if form.is_valid():
+        form.save()
+        return redirect('/userlist')
+    return render(request, 'userupdate.html', {'form': form})
 
 def searchUser(request):
     if request.method == 'POST':
