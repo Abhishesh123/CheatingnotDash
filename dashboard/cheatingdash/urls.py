@@ -11,8 +11,14 @@ urlpatterns = [
     path('logout', views.Logout, name='Logout'),
     path('delete/<int:id>', views.Delete, name='Delete'),
     path('details/<int:id>', views.Details, name='Details'),
-   
+    path('edit/<int:id>', views.Edit, name='Edit'),
     path('update/<int:id>', views.Update, name='Update'),
     path('contact', views.ContactMe, name='ContactMe'),
+
+
+    #employee model
+    path('emp', views.empList, name='empList'),
+    path('emp-create', views.create, name='create'),
+    path('emp-update/<int:id>', views.empupdate, name='empupdate'),
     # path('details', views.Details, name='Details'),
 ]

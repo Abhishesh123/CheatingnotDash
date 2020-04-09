@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <title>User List</title>
+</head>
+
+<body>
+    
+   
+<br>
+ <center>
+    <a href="{% url 'create' %}" class="btn btn-info mt-5 mb-5 text-center">Create Employee</a>
+ </center>          
+
+   
+  
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Employee ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>City</th>
+                <th>State</th>
+                <th colspan="3" class="text-center">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in emp %}
+            <tr>
+                <td>{{user.id}}</td>
+                <td>{{user.name}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.city}}</td>
+                <td>{{user.state}}</td>
+                <td><a href="#" rel="noopener noreferrer"
+                        class="text-center btn btn-danger">Details</a></td>
+                <td><a href="#" rel="noopener noreferrer"
+                        class="text-center btn btn-success">Delete</a></td>
+                <td><a href="{% url 'empupdate' user.id %}"  rel="noopener noreferrer" class="text-center btn btn-success">Update</a>
+                </td>
+
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+
+
+</body>
+
+</html>

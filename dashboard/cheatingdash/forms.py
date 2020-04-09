@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
+from cheatingdash.models import Employee
 
 
 
@@ -15,6 +16,12 @@ class ContactForm(forms.Form):
 class userForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['username', 'first_name', 'last_name', 'email']
+        fields = "__all__"
+
+
+class empForm(forms.ModelForm):
+    class Meta:
+        model = Employee
+        fields = "__all__"
 
         

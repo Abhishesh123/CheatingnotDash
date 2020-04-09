@@ -9,14 +9,23 @@
 <link rel="stylesheet" href="style.css">
 <title>Title</title>
 </head>
-<body>
+<body> 
     <div class="col-xl-6 offset-xl-3">
         <h1 class="text-center">User Update Form</h1>
-        <form action="" method="POST" class="mt-5">
+        <form action="/update/{{form.id}}" method="post" class="mt-5">
+            
             {% csrf_token %}
-         {% for user in form %}   
-          {{user}} 
-          {% endfor %}
+        <label for="">User Name</label>
+        <input type="text" name="first_name" class="form-control" value="{{ form.username }}" /> 
+        
+        <label for="">First Name</label>
+        <input type="text" name="first_name" class="form-control" value="{{ form.first_name }}" /> 
+        
+        <label for="">Last Name</label>
+        <input type="text" name="first_name" class="form-control" value="{{ form.last_name }}" /> 
+        
+        <label for="">Email</label>
+        <input type="text" name="first_name" class="form-control" value="{{ form.email }}" /> 
         
         <center>
             <button type="submit" class="btn btn-danger mt-5">Update</button>

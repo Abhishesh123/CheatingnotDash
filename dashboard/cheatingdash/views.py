@@ -3,12 +3,11 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
-from cheatingdash.forms import ContactForm, userForm
+from cheatingdash.forms import ContactForm, userForm, empForm
+from cheatingdash.models import Employee
 
 # Create your views here.
 def Index(request):
-    user = User.objects.all()
-    print(user)
     return HttpResponse('Thanks')
 
 def userList(request):
@@ -22,6 +21,45 @@ def userList(request):
         }
     return render(request, 'userlist.html',context)
     
+def empList(request):
+    emp = Employee.objects.all()
+    context =  {
+        'emp':emp
+    }
+    return render(request, 'emplist.html',context)
+
+def create(request):
+    if request.method == 'POST':
+        name = request.POST['empname']
+        email = request.POST['email']
+        city = request.POST['city']
+        state = request.POST['state']
+        emp = Employee(name = name, email = email, city = city, state = state)
+        emp.save()
+        return redirect('/emp')
+
+    return render(request, 'create_emp.html')
+
+
+def empupdate(request, id):
+    obj = get_object_or_404(Employee, pk = id)
+    print(obj)
+    form = empForm(request.POST or None, instance = obj)
+    print(form)
+    # if request.method == 'POST':
+    #     obj.name = request.POST['empname']
+    #     obj.email = request.POST['email']
+    #     obj.city = request.POST['city']
+    #     obj.state = request.POST['state']
+    #     obj.save()
+       
+    #     return redirect('/emp')
+
+    if form.is_valid():
+        form.save()
+        return redirect('/emp')
+    
+    return render(request, 'emp_update.html', {'emp': form})
 
 
 def Login(request):
@@ -54,15 +92,20 @@ def Details(request, id):
     return render(request, 'details.html', {'user': user})
 
 
+def Edit(request, id):
+    obj = User.objects.get(pk = id)    
+    return render(request, 'userupdate.html', {'form': obj})
 
 
 def Update(request, id):
-    obj = get_object_or_404(User,pk = id)    
+    obj = User.objects.get(pk = id)    
     form = userForm(request.POST or None, instance = obj)
     if form.is_valid():
         form.save()
         return redirect('/userlist')
-    return render(request, 'userupdate.html', {'form': form})
+
+        
+    return render(request, 'userupdate.html', {'form': obj})
 
 def searchUser(request):
     if request.method == 'POST':
