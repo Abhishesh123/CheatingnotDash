@@ -72,7 +72,7 @@
                                 <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="/userList">ALL User </a>
                             </div>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="/userAnalytics"> User Analytics  </a>
+                                <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="/userList"> User Analytics  </a>
                             </div>
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-inr"></i></div>
@@ -124,106 +124,16 @@
             <div id="layoutSidenav_content">
                 <main style="background-color: #e6ffff;">
                     <div class="container-fluid">
-                        <h1 class="mt-4">Dashboard</h1>
+                        <h1 class="mt-4">User analytics</h1>
                        
-                        <div class="row">
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-primary text-white mb-4">
-                                    <div class="card-body text-center">Total User: <td>{{totalusers}}</td></div>
-                                     
-                                    <!-- <div class="text-center"><h4>12</h4></div> -->
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-
-                                        <a class="small text-white stretched-link" href="/userList">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-warning text-white mb-4">
-                                    <div class="card-body">Total Subscriptions : 
-                                    {{userSubscriptions}}</div>
-
-<!--                                     <div class=" <text-center"><h4>12</h4></div>
- -->                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="/userSubscription">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-success text-white mb-4">
-                                    <div class="card-body text-center">Today User</div>
-                                  <!--    <div class="text-center"><h4>12</h4> -->
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-danger text-white mb-4">
-                                    <div class="card-body"> Today Subscriptions</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xl-6">
-                                <div class="card mb-4">
-                                    <div class="card-header"><i class="fas fa-chart-area mr-1"></i>Register User Chart </div>
-                                    <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
-                                </div>
-                            </div>
-                            <div class="col-xl-6">
-                                <div class="card mb-4">
-                                    <div class="card-header"><i class="fas fa-chart-bar mr-1"></i>Sales Chart </div>
-                                    <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card mb-4">
-                            <div class="card-header"><i class="fas fa-table mr-1"></i>User  Info</div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table">
-    <thead>
-        <tr>
-            <th>User ID</th>
-            <th>Username</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <!-- <th>Last Login</th>
-            <th>Created date</th> -->
-            <!-- <th colspan="3" class="text-center">Action</th> -->
-        </tr>
-    </thead>
-    <tbody>
-        {% for user in users %}
-       <tr>
-        <td>{{user.id}}</td>
-        <td>{{user.username}}</td>
-        <td>{{user.first_name}}</td>
-        <td>{{user.last_name}}</td>
-        <td>{{user.email}}</td>
-       
-
-
-        
-       
-       </tr>
-       {% endfor %}
-    </tbody>
-</table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
+                      <div class="col-md-6">
+      <canvas id="myChartlinesales"></canvas>
+    </div>
+    <div class="col-md-6">
+      <canvas id="myChartBarsales"></canvas>
+    </div>
+  </div>
+              <div class="row">
     <div class="col-md-6">
       <canvas id="myChartline"></canvas>
     </div>
@@ -231,6 +141,11 @@
       <canvas id="myChartBar"></canvas>
     </div>
   </div>
+                       
+                       </div>
+                        </div>
+                    </div>
+      
 
   <script>
     var endpoint = '/';
@@ -275,15 +190,14 @@
         },
 
         // Configuration options go here
-        options: {
-          scales: {
-              xAxes: [{
-              ticks: {
-                beginAtZero: true
-              }
+          options: {
+        scales: {
+            xAxes: [{
+                type: 'time',
+                distribution: 'series'
             }]
-          }
         }
+    }
 
       });
     }
@@ -319,15 +233,112 @@
             borderWidth: 1
           }]
         },
-        options: {
-          scales: {
-            yAxes: [{
-              ticks: {
-                beginAtZero: true
-              }
+          options: {
+        scales: {
+            xAxes: [{
+                type: 'time',
+                distribution: 'series'
             }]
-          }
         }
+    }
+      });
+    }
+  </script>
+
+  <script>
+    var endpoint = '/';
+    // console.log(data);
+    $.ajax({
+      method: "GET",
+      url: endpoint,
+      success: function(data) {
+        var data={{data|safe}};
+            a=data.labels;
+        console.log(a);
+        drawLineGraphs(data, 'myChartlinesales');
+        drawBarGraphs(data, 'myChartBarsales');
+        // alert(data);
+
+      },
+      error: function(error_data) {
+        console.log(error_data);
+      }
+    })
+
+
+    function drawLineGraphs(data, id) {
+      var labels = data.labels;
+      // var chartLabel = data.chartLabel;
+      alert(labels)
+      var chartdata = data.chartdata;
+      var ctx = document.getElementById(id).getContext('2d');
+      var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'radar',
+
+        // The data for our dataset
+        data: {
+          labels: labels,
+          datasets: [{
+            label: '#PerUseramount',
+            backgroundColor: 'rgb(255, 100, 200)',
+            borderColor: 'rgb(55, 99, 132)',
+            data: chartdata,
+          }]
+        },
+
+        // Configuration options go here
+          options: {
+        scales: {
+            xAxes: [{
+                type: 'time',
+                distribution: 'series'
+            }]
+        }
+    }
+
+      });
+    }
+
+    function drawBarGraphs(data, id) {
+      var labels = data.labels;
+      var chartLabel = data.chartLabel;
+      var chartdata = data.chartdata;
+      var ctx = document.getElementById(id).getContext('2d');
+      var myChart = new Chart(ctx, {
+        type: 'bubble',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: '#PerUseramount',
+            data: chartdata,
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(255, 206, 86, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(153, 102, 255, 0.2)',
+              'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+              'rgba(255, 99, 132, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(153, 102, 255, 1)',
+              'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+          }]
+        },
+          options: {
+        scales: {
+            xAxes: [{
+                type: 'time',
+                distribution: 'series'
+            }]
+        }
+    }
       });
     }
   </script>

@@ -9,6 +9,7 @@ from django.db.models import Q
 import csv
 from django.db.models import Sum
 from django.http import JsonResponse
+from cheatingdash.forms import  userForm
 
 # Create your views here.
 @login_required(login_url='/login/')
@@ -38,7 +39,6 @@ def Login(request):
     if request.method == 'POST':
         username  = request.POST.get('username')
         password  = request.POST.get('password')
-        phone = request.POST.get('phone')
         user = authenticate(username = username, password=  password)
         if user:
             if user.is_active:
@@ -120,9 +120,8 @@ def searchUser(request):
 def datefilter(request):
     if request.method == 'POST':
         data = request.POST['start']
-        data1 = request.POST['end']
         print(data)
-        user  = UserProfile.objects.filter(create_at__icontains= data)  and UserProfile.objects.filter(create_at__icontains= data)
+        user  = UserProfile.objects.filter(create_at__icontains= data)  
 
         return render(request, 'userlisting.html', {'users':user})
 
@@ -211,6 +210,38 @@ def send_otp(request):
         return HttpResponse('OTP send')
     else:
         return JsonResponse({'status':False,'msg':'invalid request'})
+
+def userUpdate(request, id):
+    obj = UserProfile.objects.get(pk = id)    
+    form = userForm(request.POST or None, instance = obj)
+    if form.is_valid():
+        form.save()
+        return redirect('/userlist')
+
+        
+    return render(request, 'userupdate.html', {'form': obj})
+
+def userAnalytics(request):
+    labels = []
+    data = []
+    user = User.objects.all()
+    totalusers=User.objects.all().count()
+    userSubscription=userSubscriptions.objects.all().count()
+    PaytmHistorys=PaytmHistory.objects.values('user').annotate(TXNAMOUNT=Sum('TXNAMOUNT'))
+    print(PaytmHistorys)
+    # labels= ['January', 'February', 'March', 'April', 'May', 'June', 'July']
+    # chartLabel =userSubscriptionss
+    for entry in PaytmHistorys:
+        labels.append(entry['user'])
+        data.append(entry['TXNAMOUNT'])
+    # chartdata = [0, 10, 5, 2, 20, 30, 45]
+    data={
+                     "labels":labels,
+                     # "chartLabel":chartLabel,
+                     "chartdata":data,
+             }
+    return render(request,'useranalytics.html',{'users':user,'totalusers':totalusers,'userSubscriptions':userSubscription,'data':data})
+
     
 
 
