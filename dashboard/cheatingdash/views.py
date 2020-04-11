@@ -10,6 +10,7 @@ import csv
 from django.db.models import Sum
 from django.http import JsonResponse
 from cheatingdash.forms import  userForm
+import datetime
 
 # Create your views here.
 @login_required(login_url='/login/')
@@ -226,9 +227,18 @@ def userAnalytics(request):
     data = []
     user = User.objects.all()
     totalusers=User.objects.all().count()
+    userHistorys=UserProfile.objects.values('create_at').annotate(user=Sum('user'))
+    for usersdata in userHistorys:
+        labels.append(usersdata['create_at'])
+        data.append(usersdata['user'])
+        usdata={
+            "ulabels":print(labels),
+            "udata":data
+        }
+        print(usdata)
     userSubscription=userSubscriptions.objects.all().count()
     PaytmHistorys=PaytmHistory.objects.values('user').annotate(TXNAMOUNT=Sum('TXNAMOUNT'))
-    print(PaytmHistorys)
+    # print(PaytmHistorys)
     # labels= ['January', 'February', 'March', 'April', 'May', 'June', 'July']
     # chartLabel =userSubscriptionss
     for entry in PaytmHistorys:
@@ -240,7 +250,7 @@ def userAnalytics(request):
                      # "chartLabel":chartLabel,
                      "chartdata":data,
              }
-    return render(request,'useranalytics.html',{'users':user,'totalusers':totalusers,'userSubscriptions':userSubscription,'data':data})
+    return render(request,'useranalytics.html',{'users':user,'totalusers':totalusers,'userSubscriptions':userSubscription,'adata':data,'usdata':usdata})
 
     
 
