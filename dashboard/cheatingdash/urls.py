@@ -14,6 +14,7 @@ urlpatterns = [
     path('edit/<int:id>', views.Edit, name='Edit'),
     path('update/<int:id>', views.Update, name='Update'),
     path('contact', views.ContactMe, name='ContactMe'),
+    path('send-sms', views.sendSMS, name='sendSMS'),
 
 
     #employee model
