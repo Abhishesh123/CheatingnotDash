@@ -190,22 +190,23 @@
         },
 
         // Configuration options go here
-          options: {
-        scales: {
-            xAxes: [{
-                type: 'time',
-                distribution: 'series'
-            }]
+       options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
         }
-    }
 
       });
     }
 
     function drawBarGraph(data, id) {
-      var labels = data.labels;
+      var labels = data.ulabels;
       var chartLabel = data.chartLabel;
-      var chartdata = data.chartdata;
+      var chartdata = data.udata;
       var ctx = document.getElementById(id).getContext('2d');
       var myChart = new Chart(ctx, {
         type: 'bar',
@@ -233,14 +234,15 @@
             borderWidth: 1
           }]
         },
-          options: {
-        scales: {
-            xAxes: [{
-                type: 'time',
-                distribution: 'series'
-            }]
+         options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
         }
-    }
       });
     }
   </script>
@@ -274,13 +276,13 @@
       var ctx = document.getElementById(id).getContext('2d');
       var chart = new Chart(ctx, {
         // The type of chart we want to create
-        type: 'radar',
+        type: 'line',
 
         // The data for our dataset
         data: {
           labels: labels,
           datasets: [{
-            label: '#PerUseramount',
+            label: '#PerUsersubscriptions',
             backgroundColor: 'rgb(255, 100, 200)',
             borderColor: 'rgb(55, 99, 132)',
             data: chartdata,
@@ -288,14 +290,15 @@
         },
 
         // Configuration options go here
-          options: {
-        scales: {
-            xAxes: [{
-                type: 'time',
-                distribution: 'series'
-            }]
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
         }
-    }
 
       });
     }
@@ -306,11 +309,11 @@
       var chartdata = data.chartdata;
       var ctx = document.getElementById(id).getContext('2d');
       var myChart = new Chart(ctx, {
-        type: 'bubble',
+        type: 'bar',
         data: {
           labels: labels,
           datasets: [{
-            label: '#PerUseramount',
+            label: '#PerUsersubscriptions',
             data: chartdata,
             backgroundColor: [
               'rgba(255, 99, 132, 0.2)',
@@ -331,14 +334,15 @@
             borderWidth: 1
           }]
         },
-          options: {
-        scales: {
-            xAxes: [{
-                type: 'time',
-                distribution: 'series'
-            }]
+       options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
         }
-    }
       });
     }
   </script>

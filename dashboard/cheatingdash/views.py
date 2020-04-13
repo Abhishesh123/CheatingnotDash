@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.db.models import Q
 import csv
-from django.db.models import Sum
+from django.db.models import Sum,Count
 from django.http import JsonResponse
 from cheatingdash.forms import  userForm
 import datetime
@@ -223,20 +223,36 @@ def userUpdate(request, id):
     return render(request, 'userupdate.html', {'form': obj})
 
 def userAnalytics(request):
+    labelpro = []
+    datapro = []
     labels = []
     data = []
+    labelss = []
+    datas = []
     user = User.objects.all()
     totalusers=User.objects.all().count()
-    userHistorys=UserProfile.objects.values('create_at').annotate(user=Sum('user'))
-    for usersdata in userHistorys:
-        labels.append(usersdata['create_at'])
-        data.append(usersdata['user'])
+    userSubscription=userSubscriptions.objects.values('user').annotate(price=Sum('price'))
+    UserProfiles = UserProfile.objects.filter(create_at__lte=datetime.datetime.today(), create_at__gt=datetime.datetime.today()-datetime.timedelta(days=30)).\
+    values('create_at').annotate(count=Count('id'))
+    for usersdatapro in UserProfiles:
+        labelpro.append(usersdatapro['create_at'])
+        datapro.append(usersdatapro['count'])
+        prosdata={
+            "plabels":labelpro,
+            "pdata":datapro
+        }
+        print(prosdata)
+    print(UserProfiles)
+    userSubscription=userSubscriptions.objects.values('user').annotate(price=Sum('price'))
+
+    for usersdata in userSubscription:
+        labelss.append(usersdata['user'])
+        datas.append(usersdata['price'])
         usdata={
-            "ulabels":print(labels),
-            "udata":data
+            "ulabels":labelss,
+            "udata":datas
         }
         print(usdata)
-    userSubscription=userSubscriptions.objects.all().count()
     PaytmHistorys=PaytmHistory.objects.values('user').annotate(TXNAMOUNT=Sum('TXNAMOUNT'))
     # print(PaytmHistorys)
     # labels= ['January', 'February', 'March', 'April', 'May', 'June', 'July']
