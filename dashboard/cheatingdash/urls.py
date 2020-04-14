@@ -28,6 +28,8 @@ urlpatterns = [
     path('Detailsuser/<int:id>',views.Detailsuser,name="Detailsuser"),
     path('send_otp/',views.send_otp ,name="send_otp") ,
     path('userUpdate/<int:id>', views.userUpdate, name='userUpdate'),
-    path('userAnalytics/',views.userAnalytics,name='userAnalytics')
+    path('userAnalytics/',views.userAnalytics,name='userAnalytics'),
+    path('get_all_logged_in_users/',views.get_all_logged_in_users,name='get_all_logged_in_users'),
+    path('alllogin/',views.alllogin,name="alllogin")
 
 ]

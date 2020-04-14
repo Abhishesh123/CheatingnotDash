@@ -84,5 +84,11 @@ class userSubscriptions(models.Model):
 
     def __unicode__(self):
         return self.status
+class AllLogin(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE,null=True, blank=True)
+    date= models.DateTimeField(auto_now_add= True)
+
+    def __str__(self):
+        return str(self.user) + ': ' + str(self.date)
 
         
