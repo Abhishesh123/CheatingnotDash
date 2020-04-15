@@ -239,9 +239,9 @@ def userAnalytics(request):
     totalusers=User.objects.all().count()
     userSubscription=userSubscriptions.objects.values('user').annotate(price=Sum('price'))
     UserProfiles = UserProfile.objects.filter(create_at__lte=datetime.datetime.today(), create_at__gt=datetime.datetime.today()-datetime.timedelta(days=30)).\
-    values('create_at').annotate(count=Count('id'))
+    values('create_at__month').annotate(count=Count('id'))
     for usersdatapro in UserProfiles:
-        labelpro.append(usersdatapro['create_at'])
+        labelpro.append(usersdatapro['create_at__month'])
         datapro.append(usersdatapro['count'])
         prosdata={
             "plabels":labelpro,

@@ -123,6 +123,7 @@
     </div>
                    
                         <div class="card mb-4">
+
                             <div class="card-header"><i  class="fas fa-users mr-1"></i><a href="/userList">Total User</a></div>
                             <div class="row">
                            
@@ -144,6 +145,8 @@
  <button type="submit" class="btn btn-info">Search Now</button>
 </form>
 </div>
+                            
+
 
 </div>
                             <div class="card-body">
@@ -151,6 +154,7 @@
                                  <table class="table">
     <thead>
         <tr>
+            <th><input type="checkbox" id="selectall"/></th>
             <th>User ID</th>
             <th>Username</th>
             <th>Age</th>
@@ -160,11 +164,14 @@
 
 
             <th colspan="3" class="text-center">Action</th>
+            <p id="demo"></p>
+
         </tr>
     </thead>
     <tbody>
         {% for user in users %}
        <tr>
+        <td align="center"><input type="checkbox" class="case" name="case" value="{{user.id}}"/></td>
         <td>{{user.id}}</td>
         <td>{{user.user}}</td>
         <td>{{user.age}}</td>
@@ -177,7 +184,7 @@
          <td>
             <div class="btn-group btn-toggle"> 
     <button class="btn btn-default">Unblock</button>
-    <button class="btn btn-primary active">Block</button>
+    <button class="btn btn-primary active" onclick="myFunction()">Block</button>
   </div>
 </td>
         
@@ -239,6 +246,38 @@ $('form').submit(function(){
 
 });
                 </script>  
+
+                <script>
+function myFunction() {
+  var txt;
+  if (confirm("Are you sure you want to block this user!")) {
+    txt = "You successfully blocked  User!";
+  } else {
+    txt = "You pressed Cancel!";
+  }
+  document.getElementById("demo").innerHTML = txt;
+}
+
+$(function(){
+
+    // add multiple select / deselect functionality
+    $("#selectall").click(function () {
+          $('.case').attr('checked', this.checked);
+    });
+
+    // if all checkbox are selected, check the selectall checkbox
+    // and viceversa
+    $(".case").click(function(){
+
+        if($(".case").length == $(".case:checked").length) {
+            $("#selectall").attr("checked", "checked");
+        } else {
+            $("#selectall").removeAttr("checked");
+        }
+
+    });
+});
+</script>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>

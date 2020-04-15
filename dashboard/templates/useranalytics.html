@@ -133,17 +133,14 @@
       <canvas id="myChartBarsales"></canvas>
     </div>
  </div> 
-              <div class="row">
+    <div class="row">
     <div class="col-md-6">
       <canvas id="myChartline"></canvas>
     </div>
     <div class="col-md-6">
       <canvas id="myChartBar"></canvas>
     </div>
-  </div>
-
-           <div class="row">
-             <h1 class="mt-4">User Registrations</h1>
+    <h1 class="mt-4">User Registrations</h1>
     <div class="col-md-6">
       <canvas id="Chartline"></canvas>
     </div>
@@ -151,6 +148,11 @@
       <canvas id="ChartBar"></canvas>
     </div>
   </div>
+  <div class="row">
+             
+  </div>
+
+           
                        
                        </div>
                         </div>
@@ -364,10 +366,10 @@
       method: "GET",
       url: endpoint,
       success: function(data) {
-        var datass={{prosdatas|safe}};
-            a=datass.plabels;
-            alert(datass);
-            alert(a);
+        var data={{prosdatas|safe}};
+            a=data.plabels;
+            // alert(datass);
+            // alert(a);
         lineGraphs(data, 'Chartline');
         barGraphs(data, 'ChartBar');
         // alert(data);
@@ -380,10 +382,10 @@
 
 
     function lineGraphs(data, id) {
-      var labels = datass.plabels;
+      var labels = data.plabels;
       // var chartLabel = data.chartLabel;
       alert(labels)
-      var chartdata = datass.pdata;
+      var chartdata = data.pdata;
       var ctx = document.getElementById(id).getContext('2d');
       var chart = new Chart(ctx, {
         // The type of chart we want to create
@@ -393,7 +395,7 @@
         data: {
           labels: labels,
           datasets: [{
-            label: '#Peruserresgistrations',
+            label: '#Monthwiseuserregister',
             backgroundColor: 'rgb(255, 100, 200)',
             borderColor: 'rgb(55, 99, 132)',
             data: chartdata,
@@ -415,16 +417,16 @@
     }
 
     function barGraphs(data, id) {
-      var labels = datass.plabels;
-      var chartLabel = datass.chartLabel;
-      var chartdata = datass.pdata;
+      var labels = data.plabels;
+      // var chartLabel = datass.chartLabel;
+      var chartdata = data.pdata;
       var ctx = document.getElementById(id).getContext('2d');
       var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
           labels: labels,
           datasets: [{
-            label: '#Peruserresgistrations',
+            label: '#Monthwiseuserregister',
             data: chartdata,
             backgroundColor: [
               'rgba(255, 99, 132, 0.2)',
