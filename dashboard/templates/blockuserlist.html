@@ -111,40 +111,16 @@
             <div id="layoutSidenav_content">
                 <main style="background-color: #e6ffff;">
                     <div class="container-fluid">
-                        <h1 class="mt-4">Dashboard</h1>
+                        <h1 class="mt-4">BlockUser</h1>
                         
-                        <div class="">
-    <form action="/userListCSV/"  method="post">
-        {% csrf_token %}
-  
-  <button type="submit" class="btn btn-info">Export</button>
-
-</form>
-    </div>
+             
                    
                         <div class="card mb-4">
 
-                            <div class="card-header"><i  class="fas fa-users mr-1"></i><a href="/userList">Total User</a></div>
+                            <div class="card-header"><i  class="fas fa-users mr-1"></i><a href="/userList">Total BlockUser</a></div>
                             <div class="row">
                            
-<div class="col-md-5">
-    <form action="/datefilter/"  method="post">
-        {% csrf_token %}
-  <label for="birthday">Date</label>
-  <input type="date"  name="start">
-    
 
-  <button type="submit" class="btn btn-info">Click</button>
-
-</form>
-    </div>
-<div class="col-md-5">
- <form action="/search/" method="post">
-                    {% csrf_token %}
- <input type="text" name="q" placeholder="Search Phone">
- <button type="submit" class="btn btn-info">Search Now</button>
-</form>
-</div>
                             
 
 
@@ -178,13 +154,9 @@
         <td>{{user.phone}}</td>
         <td>{{user.address}}</td>
         <td>{{user.create_at|date}}</td>
-        <td><a href="/Detailsuser/{{user.id}}" rel="noopener noreferrer" class="text-center btn btn-primary">Details</a></td>
-       
-        <td><a href="/userUpdate/{{user.id}}" target="_blank" rel="noopener noreferrer" class="text-center btn btn-success">Update</a></td>
-         <td>
-    
-    <td><a  href="/blockuser/{{user.id}}"class="btn btn-danger active" onclick="myFunction()">Block</a>
         
+    <td><a href="/unblockuser/{{user.id}}"class="btn btn-primary active" onclick="myFunction()">Unblock</a></td>
+  
        
        </tr>
        {% endfor %}

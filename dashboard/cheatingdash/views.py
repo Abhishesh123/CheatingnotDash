@@ -93,8 +93,7 @@ def Paymentdetail(request, id):
     return render(request, 'paymentdetails.html', {'user': user})
 
 def userList(request):
-    user = UserProfile.objects.all()
-    print(user)
+    user = UserProfile.objects.filter(is_active = True)
     return render(request, 'userlisting.html', {'users':user})
 
 
@@ -297,4 +296,20 @@ def alllogin(request):
     loginut=AllLogin.objects.create(user=request.user)
     print(loginut)
     return render(request, 'homepage.html', {'loginut':loginut})
+
+def blockuser(request, id):
+    user = UserProfile.objects.get(pk = id)
+    user.is_active = False
+    user.save()
+    return redirect('/userList')
+
+def unblockuser(request, id):
+    user = UserProfile.objects.get(pk = id)
+    user.is_active = True
+    user.save()
+    return redirect('/unblockuser')
+
+def blockUserslist(request):
+    user = UserProfile.objects.filter(is_active = False)
+    return render(request, 'blockuserlist.html', {'users':user})
 

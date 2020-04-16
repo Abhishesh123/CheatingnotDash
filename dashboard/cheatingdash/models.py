@@ -13,6 +13,7 @@ class UserProfile(models.Model):
     age=models.CharField(max_length=4,null=True, blank=True)
     phone=models.CharField(max_length=11,null=True, blank=True)
     city=models.CharField(max_length=40,null=True, blank=True)
+    is_active = models.BooleanField( default=True) 
     create_at = models.DateTimeField(auto_now_add=True)
 
 

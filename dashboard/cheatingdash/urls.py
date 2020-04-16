@@ -30,6 +30,9 @@ urlpatterns = [
     path('userUpdate/<int:id>', views.userUpdate, name='userUpdate'),
     path('userAnalytics/',views.userAnalytics,name='userAnalytics'),
     path('get_all_logged_in_users/',views.get_all_logged_in_users,name='get_all_logged_in_users'),
-    path('alllogin/',views.alllogin,name="alllogin")
+    path('alllogin/',views.alllogin,name="alllogin"),
+    path('blockuser/<int:id>',views.blockuser,name='blockuser'),
+    path('unblockuser/<int:id>',views.unblockuser,name='unblockuser'),
+    path('blockUserslist',views.blockUserslist,name='blockUserslist')
 
 ]
