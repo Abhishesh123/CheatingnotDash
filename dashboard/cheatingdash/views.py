@@ -11,7 +11,7 @@ def Index(request):
     return HttpResponse('Thanks')
 
 def userList(request):
-    user = User.objects.all()
+    user = User.objects.filter(is_active = True)
     column_list = ['Active','Age','City','Country','Gender']
     print(user.count())
     context =  {
@@ -20,6 +20,25 @@ def userList(request):
         'columns':column_list
         }
     return render(request, 'userlist.html',context)
+
+
+def Block(request, id):
+    user = User.objects.get(pk = id)
+    user.is_active = False
+    user.save()
+    return redirect('/userlist')
+
+def unBlock(request, id):
+    user = User.objects.get(pk = id)
+    user.is_active = True
+    user.save()
+    return redirect('/userlist')
+
+def blockUsers(request):
+    user = User.objects.filter(is_active = False)
+    return render(request, 'block-user.html', {'users':user})
+    
+    
     
 def empList(request):
     emp = Employee.objects.all()
@@ -176,9 +195,10 @@ def ContactMe(request):
     return render(request, 'contact.html', {'form': form})
 
 
-import requests
-import json
 
+# import json
+
+# import requests
 def sendSMS(request):
     if request.method == 'POST':
         number = request.POST['phone']
@@ -187,27 +207,27 @@ def sendSMS(request):
         print(number)
         print(senderid)
         print(msgs)
-        URL = 'https://www.sms4india.com/api/v1/sendCampaign'
+        # URL = 'https://www.sms4india.com/api/v1/sendCampaign'
 
-        # get request
-        def sendPostRequest(reqUrl, apiKey, secretKey, useType, phoneNo, senderId, textMessage):
-            req_params = {
-                'apikey':apiKey,
-                'secret':secretKey,
-                'usetype':useType,
-                'phone': phoneNo,
-                'message':textMessage,
-                'senderid':senderId
-                }
-            return requests.post(reqUrl, req_params)
+        # # get request
+        # def sendPostRequest(reqUrl, apiKey, secretKey, useType, phoneNo, senderId, textMessage):
+        #     req_params = {
+        #         'apikey':apiKey,
+        #         'secret':secretKey,
+        #         'usetype':useType,
+        #         'phone': phoneNo,
+        #         'message':textMessage,
+        #         'senderid':senderId
+        #         }
+        #     return requests.post(reqUrl, req_params)
 
-        # get response
-        response = sendPostRequest(URL, 'api_key', 'secretKey', 'stage', number, senderid, msgs )
-        """
-        Note:-
-            you must provide apikey, secretkey, usetype, mobile, senderid and message values
-            and then requst to api
-        """
-        # print response if you want
-        print(response.text)
+        # # get response
+        # response = sendPostRequest(URL, 'api_key', 'secretKey', 'stage', number, senderid, msgs )
+        # """
+        # Note:-
+        #     you must provide apikey, secretkey, usetype, mobile, senderid and message values
+        #     and then requst to api
+        # """
+        # # print response if you want
+        # print(response.text)
     return render(request, 'send-sms.html')
