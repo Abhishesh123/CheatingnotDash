@@ -33,6 +33,8 @@ urlpatterns = [
     path('alllogin/',views.alllogin,name="alllogin"),
     path('blockuser/<int:id>',views.blockuser,name='blockuser'),
     path('unblockuser/<int:id>',views.unblockuser,name='unblockuser'),
-    path('blockUserslist',views.blockUserslist,name='blockUserslist')
+    path('blockUserslist/',views.blockUserslist,name='blockUserslist'),
+    path('matchedprofiles/',views.matchedprofiles,name='matchedprofiles'),
+    path('Matchprofiles/<int:id>',views.Matchprofiles,name='Matchprofiles')
 
 ]

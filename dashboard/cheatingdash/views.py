@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
-from cheatingdash.models import PaytmHistory,StatusHistory,UserProfile,userSubscriptions,AllLogin
+from cheatingdash.models import PaytmHistory,StatusHistory,UserProfile,userSubscriptions,AllLogin,Matchprofile
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.db.models import Q
@@ -19,13 +19,34 @@ from django.utils import timezone
 def Index(request):
     labels = []
     data = []
-    user = User.objects.all()
-    today = datetime.date.today() + datetime.timedelta(days=1)
+    uid_list = []
+    
+    today = datetime.date.today()
+    print(today)
     last_week = datetime.date.today() - datetime.timedelta(days=7)
     sevndayslogin=User.objects.filter(last_login__range=(last_week, today))
-    print(sevndayslogin)
-    totalusers=User.objects.all().count()
-    userSubscription=userSubscriptions.objects.all().count()
+    # print(sevndayslogin)
+    todaysubsplan = userSubscriptions.objects.filter(subsdate__date=today).count()
+    totalsubsplan = userSubscriptions.objects.all().count()
+    totalmatched = Matchprofile.objects.all().count()
+    todymatch=Matchprofile.objects.filter(matched_at__date=today).count()
+
+    todayuser = UserProfile.objects.filter(create_at__date=today).count()
+    
+    totalusers=UserProfile.objects.all().count()
+    sessions = Session.objects.filter(expire_date__gte=timezone.now())
+
+    # Build a list of user ids from that query
+    for session in sessions:
+        datas = session.get_decoded()
+        uid_list.append(datas.get('_auth_user_id', None))
+        totaluserslogin=User.objects.filter(id__in=uid_list).count()
+        # print(totaluserslogin)
+    todaysales=PaytmHistory.objects.filter(TXNDATE__date=today).aggregate(total_TXNAMOUNT=Sum('TXNAMOUNT'))
+    totalsales=PaytmHistory.objects.aggregate(total_TXNAMOUNT=Sum('TXNAMOUNT'))
+    # print(totalsales)
+    print(totalsales)
+
     PaytmHistorys=PaytmHistory.objects.values('user').annotate(TXNAMOUNT=Sum('TXNAMOUNT'))
     # print(PaytmHistorys)
     # labels= ['January', 'February', 'March', 'April', 'May', 'June', 'July']
@@ -39,7 +60,7 @@ def Index(request):
                      # "chartLabel":chartLabel,
                      "chartdata":data,
              }
-    return render(request,'homepage.html',{'users':user,'totalusers':totalusers,'userSubscriptions':userSubscription,'data':data})
+    return render(request,'homepage.html',{'todayuser':todayuser,'totalusers':totalusers,'userSubscriptions':userSubscription,'data':data,'totaluserslogin':totaluserslogin,'totalsaless':totalsales,'totalsubsplans':totalsubsplan,'totalmatched':totalmatched,'todymatch':todymatch,'todaysubsplan':todaysubsplan,'todaysales':todaysales})
 
 
 def Login(request):
@@ -312,4 +333,12 @@ def unblockuser(request, id):
 def blockUserslist(request):
     user = UserProfile.objects.filter(is_active = False)
     return render(request, 'blockuserlist.html', {'users':user})
+def matchedprofiles(request):
+    matchpro=Matchprofile.objects.all()
+    return render(request, 'matched.html', {'users':matchpro})
+def Matchprofiles(request, id):
+    matcheddel = Matchprofile.objects.get(id = id)
+    matcheddel.delete()
+    return redirect('/matchedprofiles')
+
 

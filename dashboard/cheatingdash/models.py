@@ -80,6 +80,7 @@ class userSubscriptions(models.Model):
     BoostMinute = models.IntegerField()
     SuperLikeCount=models.IntegerField()
     status  = models.IntegerField(default=0, choices=STATUS)
+    subsdate = models.DateTimeField(auto_now_add=True)
     class Meta:
         app_label = 'cheatingdash'
 
@@ -91,5 +92,20 @@ class AllLogin(models.Model):
 
     def __str__(self):
         return str(self.user) + ': ' + str(self.date)
+class Matchprofile(models.Model):
+    INACTIVE = 0
+    ACTIVE = 1
+    STATUS = (
+        (INACTIVE, _('Inactive')),
+        (ACTIVE, _('Active')),
+    )
+    matchid=models.IntegerField()
+    user1id=models.IntegerField()
+    user2id=models.IntegerField()
+    status  = models.IntegerField(default=0, choices=STATUS)
+    matched_at=models.DateTimeField(auto_now_add=True)
+    class Meta:
+        app_label = 'cheatingdash'
 
-        
+    def __unicode__(self):
+        return self.status
