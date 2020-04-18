@@ -44,7 +44,7 @@
         </nav>
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
-              <div id="layoutSidenav_nav">
+               <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
@@ -139,19 +139,18 @@
             </div>
             </div>
             <div id="layoutSidenav_content">
-                <main style="background-color: #e6ffff;">
+                <main style="background-color: #ecf0f5;">
                     <div class="container-fluid">
-                        <h1 class="mt-4">Matched Profile</h1>
+                        <h1 class="mt-4">Order Management</h1>
+                       
                         
-             
                    
                         <div class="card mb-4">
-
-                            
-                            <div class="row">
                            
-
-                            
+                            <div class="row">
+                            <div class="dropdown col-md-2">
+       
+</div>
 
 
 </div>
@@ -160,40 +159,39 @@
                                  <table class="table">
     <thead>
         <tr>
-            <th><input type="checkbox" id="selectall"/></th>
-            <th>Match Id</th>
-            <th>User1</th>
-            <th>User2</th>
-            <th>Status</th>
-            <th>Matched At</th>
-            
+            <th>Order ID</th>
+            <th>Subscriptions ID</th>
+            <th>Username</th>
+            <th> Plan Name</th>
+            <th>Month</th>
+            <th>Price</th>
+            <th> Status</th>
 
 
             <th colspan="3" class="text-center">Action</th>
-            <p id="demo"></p>
-
         </tr>
     </thead>
     <tbody>
-        {% for user in users %}
+        {% for order in order %}
        <tr>
-        <td align="center"><input type="checkbox" class="case" name="case" value="{{user.id}}"/></td>
-        <td>{{user.matchid}}</td>
-        <td>{{user.user1id}}</td>
-        <td>{{user.user2id}}</td>
-        <td>{{user.status}}</td>
+        <td>{{order.id}}</td>
+        <td>{{order.subsid}}</td>
+        <td>{{order.user}}</td>
+        <td>{{order.planName}}</td>
+        <td>{{order.durationMonth}}</td>
+        <td>&#x20B9;{{order.price}}</td>
+        <td>{{order.status}}</td>
+        <td><a href="#" rel="noopener noreferrer" class="btn btn-xs btn-primary"  ><i  style="font-size:20px"class="fa fa-eye"></i>
+</a></td>
+       
+       
         
-        <td>{{user.matched_at|date}}</td>
-        
-    <td><a href="/Matchprofiles/{{user.id}}"class="btn btn-primary active" onclick="myFunction()">Delete</a></td>
-    <i class="glyphicon glyphicon-trash"></i>
-  
        
        </tr>
        {% endfor %}
     </tbody>
 </table>
-                     </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -212,72 +210,6 @@
                 </footer>
             </div>
         </div>
-         <script type="text/javascript">
-    $(document).ready(function(){
-
-                    
-    $('.btn-toggle').click(function(){
-    $(this).find('.btn').toggleClass('active');  
-    
-    if ($(this).find('.btn-primary').length>0) {
-        $(this).find('.btn').toggleClass('btn-primary');
-    }
-    if ($(this).find('.btn-danger').length>0) {
-        $(this).find('.btn').toggleClass('btn-danger');
-    }
-    if ($(this).find('.btn-success').length>0) {
-        $(this).find('.btn').toggleClass('btn-success');
-    }
-    if ($(this).find('.btn-info').length>0) {
-        $(this).find('.btn').toggleClass('btn-info');
-    }
-    
-    $(this).find('.btn').toggleClass('btn-default');
-       
-});
-
-$('form').submit(function(){
-  var radioValue = $("input[name='options']:checked").val();
-  if(radioValue){
-     alert("You selected - " + radioValue);
-   };
-    return false;
-});
-
-});
-                </script>  
-
-                <script>
-function myFunction() {
-  var txt;
-  if (confirm("Are you sure you want to Delete")) {
-    
-  } else {
-    txt = "You pressed Cancel!";
-  }
-  
-}
-
-$(function(){
-
-    // add multiple select / deselect functionality
-    $("#selectall").click(function () {
-          $('.case').attr('checked', this.checked);
-    });
-
-    // if all checkbox are selected, check the selectall checkbox
-    // and viceversa
-    $(".case").click(function(){
-
-        if($(".case").length == $(".case:checked").length) {
-            $("#selectall").attr("checked", "checked");
-        } else {
-            $("#selectall").removeAttr("checked");
-        }
-
-    });
-});
-</script>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>

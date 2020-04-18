@@ -109,3 +109,54 @@ class Matchprofile(models.Model):
 
     def __unicode__(self):
         return self.status
+
+
+class orderManagement(models.Model):
+
+        INACTIVE = 0
+        ACTIVE = 1
+        STATUS = (
+            (INACTIVE, _('Inactive')),
+            (ACTIVE, _('Active')),
+        )
+        subsid= models.OneToOneField(userSubscriptions, on_delete=models.CASCADE,null=True, blank=True)
+        user = models.OneToOneField(User, on_delete=models.CASCADE,null=True, blank=True)
+        planName=models.CharField(max_length=4,null=True, blank=True)
+        durationMonth= models.IntegerField()
+        price= models.IntegerField()
+        BoostCount =  models.IntegerField()
+        BoostMinute = models.IntegerField()
+        SuperLikeCount=models.IntegerField()
+        status  = models.IntegerField(default=0, choices=STATUS)
+        created_at=models.DateTimeField(auto_now_add=True)
+        class Meta:
+            app_label = 'cheatingdash'
+
+        def __unicode__(self):
+            return self.status
+
+class superPlans(models.Model):
+    planName=models.CharField(max_length=4,null=True, blank=True)
+    durationMonth= models.IntegerField()
+    price= models.IntegerField()
+
+
+    class Meta:
+        app_label = 'cheatingdash'
+
+    def __unicode__(self):
+        return self.price
+class singlePlans(models.Model):
+    title=models.CharField(max_length=100,null=True, blank=True)
+    description=models.CharField(max_length=100,null=True, blank=True)
+    Ty=models.CharField(max_length=100,null=True, blank=True)
+    
+
+
+    class Meta:
+        app_label = 'cheatingdash'
+
+    def __unicode__(self):
+        return self.Type
+
+

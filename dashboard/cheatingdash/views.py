@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
-from cheatingdash.models import PaytmHistory,StatusHistory,UserProfile,userSubscriptions,AllLogin,Matchprofile
+from cheatingdash.models import PaytmHistory,StatusHistory,UserProfile,userSubscriptions,AllLogin,Matchprofile,orderManagement,superPlans,singlePlans
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.db.models import Q
@@ -340,5 +340,21 @@ def Matchprofiles(request, id):
     matcheddel = Matchprofile.objects.get(id = id)
     matcheddel.delete()
     return redirect('/matchedprofiles')
+def ordermanagement(request):
+    order=orderManagement.objects.all()
+    return render(request, 'ordermanage.html', {'order':order})
+
+def freeplan(request):
+
+    return render(request, 'freeplan.html')
+
+def superPlan(request):
+    superPlane=superPlans.objects.all()
+    return render(request,'superplan.html',{'superPlan':superPlane})
+def singlePlan(request):
+    singlePlane=singlePlans.objects.all()
+    return render(request,'singleplan.html',{'singlePlan':singlePlane})
+
+
 
 

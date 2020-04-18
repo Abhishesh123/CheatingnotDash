@@ -35,6 +35,11 @@ urlpatterns = [
     path('unblockuser/<int:id>',views.unblockuser,name='unblockuser'),
     path('blockUserslist/',views.blockUserslist,name='blockUserslist'),
     path('matchedprofiles/',views.matchedprofiles,name='matchedprofiles'),
-    path('Matchprofiles/<int:id>',views.Matchprofiles,name='Matchprofiles')
+    path('Matchprofiles/<int:id>',views.Matchprofiles,name='Matchprofiles'),
+    path('ordermanagement/',views.ordermanagement,name="ordermanagement"),
+    path('userSubscription/freeplan/',views.freeplan,name="freeplan"),
+    path('userSubscription/superPlan/',views.superPlan,name="superPlans"),
+    path('userSubscription/singlePlan/',views.singlePlan,name='singlePlan')
+
 
 ]
