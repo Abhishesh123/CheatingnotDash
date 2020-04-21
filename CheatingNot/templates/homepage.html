@@ -1,0 +1,517 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>CheatingNot Admin</title>
+        <link rel="stylesheet" href="{% static 'css/main.css' %}">
+        <script type="text/javascript" src="{% static 'js/scripts.js' %}"></script>
+       
+        <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
+         <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+         <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+    </head>
+    <body class="sb-nav-fixed">
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">CheatingNot Dashbord</a><button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button
+            ><!-- Navbar Search-->
+           <!--  <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+                <div class="input-group">
+                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </form>
+            Navbar-->
+            <!-- <ul class="navbar-nav ml-auto ml-md-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                        <a class="dropdown-item" href="#">Settings</a><a class="dropdown-item" href="#">Activity Log</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Logout</a>
+                    </div>
+                </li>
+            </ul> --> 
+        </nav>
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                    <div class="sb-sidenav-menu">
+                        <div class="nav">
+                            
+                            <a class="nav-link" href="/"
+                                ><div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Dashboard</a
+                            >
+                           
+                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts"
+                                ><div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                                 Manage User
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
+                            ></a>
+                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="#">ALL User </a>
+                            </div>
+                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="#"> User Analytics  </a>
+                            </div>
+                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="/blockUserslist">All Block User  </a>
+                            </div>
+                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts"
+                                ><div class="sb-nav-link-icon"> <i class="fas fa-rupee-sign"></i> </div>
+                                Payment Details
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
+                            ></a>
+                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="#">Payments </a><a class="nav-link" href="#">Status</a></nav>
+                            </div>
+                           
+                            <a class="nav-link" href="#"
+                                ><div class="sb-nav-link-icon"><i class="fa fa-users"></i></div>
+                                Order Management</a
+                            >
+                            <a class="nav-link" href="/planpurchedbyuser"
+                                ><div class="sb-nav-link-icon"><i class="fa fa-users"></i></div>
+                                User Subscription</a
+                            >
+                            
+                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages"
+                                ><div class="sb-nav-link-icon"><i class="fa fa-users"></i></div>
+                                Subscription Managements
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
+                            ></a>
+                            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth"
+                                        >Free Plan
+                                        </a>
+                                   
+                                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError"
+                                        >Super Plan (Gold,Plus)
+                                       
+                                    </a>
+                                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError"
+                                        >Single Plan
+                                       
+                                    </a>
+                                   
+                                </nav>
+                            </div>
+                             <a class="nav-link" href="/matchedprofiles"
+                                ><div class="sb-nav-link-icon"><i class="fas fa-hands-helping"></i></div>
+                                Manage Matched Profile</a
+                            >
+
+                             <a class="nav-link" href="#"
+                                ><div class="sb-nav-link-icon"><i class="fas fa-file"></i></div>
+                               Reports</a
+                            >
+
+                             <a class="nav-link" href="#"
+                                ><div class="sb-nav-link-icon"><i class="fas fa-file"></i></div>
+                                Reported Users</a
+                            >
+
+                             <a class="nav-link" href="#"
+                                ><div class="sb-nav-link-icon"><i class="fas fa-file"></i></div>
+                                Reported Reason Management</a
+                            >
+
+                            
+                        </div>
+                    </div>
+                    <div class="sb-sidenav-footer">
+                        <div class="small">Logged in as:</div>
+                        Abhishesh
+                    </div>
+                </nav>
+            </div>
+            <div id="layoutSidenav_content">
+                <main style="background-color: #ecf0f5;">
+                    <div class="container-fluid">
+                        <h1 class="mt-4">Dashboard</h1>
+                      
+                        <div class="row">
+                            <div class="col-xl-4 col-md-6">
+                               
+                                <div class="small-box bg-purple">
+                                  <div class="inner">
+                                    <h3 class="small-box-h3">{{todayuser}}</h3>
+                                    <p class="small-box-p">Today Users</p>
+                                  </div>
+                                  <div class="icon">
+                                    <i class="fa fa-user"></i>
+                                  </div>
+                                  <a href="/userList" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-md-6">
+                                <div class="small-box bg-maroon">
+                                  <div class="inner">
+                                    <h3 class="small-box-h3">0</h3>
+                                    <p class="small-box-p">Today Matched </p>
+                                  </div>
+                                  <div class="icon">
+                                   <i class="fas fa-hands-helping"></i>
+
+                                  </div>
+                                  <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                               
+                            </div>
+                            <div class="col-xl-4 col-md-6">
+                                <div class="small-box bg-red">
+                                      <div class="inner">
+                                        <h3 class="small-box-h3">0</h3>
+                                        <p class="small-box-p">Today Earnings</p>
+                                      </div>
+                                      <div class="icon">
+                                        <i class="fas fa-rupee-sign"></i>
+                                      </div>
+                                      <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                    </div>
+                                
+                            </div>
+                           
+                        </div>
+                         <div class="row">
+                            <div class="col-xl-4 col-md-6">
+                                <div class="small-box bg-yellow">
+                                  <div class="inner">
+                                    <h3 class="small-box-h3">{{totaluser}}</h3>
+                                    <p class="small-box-p">Total Users</p>
+                                  </div>
+                                  <div class="icon">
+                                    <i class="fa fa-users"></i>
+                                  </div>
+                                  <a href="/userList" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                                
+                            </div>
+                            <div class="col-xl-4 col-md-6">
+                                <div class="small-box bg-green">
+                                  <div class="inner">
+                                    <h3 class="small-box-h3">0</h3>
+                                    <p class="small-box-p">Total Matched Profiles</p>
+                                  </div>
+                                  <div class="icon">
+                                    <i class="fas fa-hands-helping"></i>
+                                  </div>
+                                  <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                               
+                            </div>
+                            <div class="col-xl-4 col-md-6">
+                                 <div class="small-box bg-aqua">
+                                      <div class="inner">
+                                        <h3 class="small-box-h3">0</h3>
+                                        <p class="small-box-p">Total Earnings</p>
+                                      </div>
+                                      <div class="icon">
+                                        <i class="fas fa-rupee-sign"></i>
+                                      </div>
+                                      <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                    </div>
+                                
+                            </div>
+                           
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-4 col-md-6">
+                                <div class="small-box bg-red">
+                                      <div class="inner">
+                                        <h3 class="small-box-h3">0</h3>
+                                        <p class="small-box-p">Today Boost Plan Subscription</p>
+                                      </div>
+                                      <div class="icon">
+                                        <i class="fa fa-bolt"></i>
+                                      </div>
+                                      <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                    </div>
+                                
+                            </div>
+                            <div class="col-xl-4 col-md-6">
+                                <div class="small-box bg-purple">
+                                      <div class="inner">
+                                        <h3 class="small-box-h3">0</h3>
+                                        <p class="small-box-p">Today CheatingNot Plus Plan Subscriptions</p>
+                                      </div>
+                                      <div class="icon">
+                                        <i class="fa fa-plus"></i>
+                                      </div>
+                                      <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                    </div>
+                               
+                            </div>
+                            <div class="col-xl-4 col-md-6">
+                                <div class="small-box bg-maroon">
+                                      <div class="inner">
+                                        <h3 class="small-box-h3">0</h3>
+                                        <p class="small-box-p">Today Super Like Plan Subscriptions</p>
+                                      </div>
+                                      <div class="icon">
+                                        <i class="fa fa-star"></i>
+                                      </div>
+                                      <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                    </div>
+                               
+                            </div>
+                           
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-4 col-md-6">
+                                <div class="small-box bg-aqua">
+                                      <div class="inner">
+                                        <h3 class="small-box-h3">0</h3>
+                                        <p class="small-box-p">Total Boost Plan Subscriptions</p>
+                                      </div>
+                                      <div class="icon">
+                                        <i class="fa fa-bolt"></i>
+                                      </div>
+                                      <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                    </div>
+                                
+                            </div>
+                            <div class="col-xl-4 col-md-6">
+                                <div class="small-box bg-yellow">
+                                      <div class="inner">
+                                        <h3 class="small-box-h3">0</h3>
+                                        <p class="small-box-p">Total CheatingNot Plus Plan Subscriptions</p>
+                                      </div>
+                                      <div class="icon">
+                                        <i class="fa fa-plus"></i>
+                                      </div>
+                                      <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                    </div>
+                               
+                            </div>
+                            <div class="col-xl-4 col-md-6">
+                                <div class="small-box bg-green">
+                                      <div class="inner">
+                                        <h3 class="small-box-h3">0</h3>
+                                        <p class="small-box-p">Total Super Like Plan Subscriptions</p>
+                                      </div>
+                                      <div class="icon">
+                                        <i class="fa fa-star"></i>
+                                      </div>
+                                      <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                    </div>
+                               
+                            </div>
+                            <!-- <div class="col-xl-3 col-md-6">
+                                <div class="card bg-danger text-white mb-4">
+                                    <div class="card-body"> Today Subscriptions</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="#">View Details</a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-4 col-md-6">
+                                <div class="small-box bg-yellow">
+                                      <div class="inner">
+                                        <h3 class="small-box-h3">0</h3>
+                                        <p class="small-box-p">Today Cheatingnot Gold Plan Subscriptions</p>
+                                      </div>
+                                      <div class="icon">
+                                        <i class="fa fa-heart"></i>
+                                      </div>
+                                      <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                    </div>
+                                
+                            </div>
+                            <div class="col-xl-4 col-md-6">
+                                <div class="small-box bg-blue">
+                                      <div class="inner">
+                                        <h3 class="small-box-h3">0</h3>
+                                        <p class="small-box-p">Total CheatingNot Gold Plan Subscriptions</p>
+                                      </div>
+                                      <div class="icon">
+                                        <i class="fa fa-heart"></i>
+                                      </div>
+                                      <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                    </div>
+                               
+                            </div>
+                            
+                           
+                        </div>
+                        <!-- <div class="row">
+                            <div class="col-xl-6">
+                                <div class="card mb-4">
+                                    <div class="card-header"><i class="fas fa-chart-area mr-1"></i>Register User Chart </div>
+                                    <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="card mb-4">
+                                    <div class="card-header"><i class="fas fa-chart-bar mr-1"></i>Sales Chart </div>
+                                    <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+                                </div>
+                            </div>
+                        </div> -->
+
+                    </div>
+
+                    {% if loginusers %}
+<ul class="user-list">
+    {% for user in loginusers %}
+    <li>{{ user }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+                    <div class="row">
+    <div class="col-md-6">
+      <canvas id="myChartline"></canvas>
+    </div>
+    <div class="col-md-6">
+      <canvas id="myChartBar"></canvas>
+    </div>
+  </div>
+
+  <script>
+    var endpoint = '/';
+    // console.log(data);
+    $.ajax({
+      method: "GET",
+      url: endpoint,
+      success: function(data) {
+        var data={{data|safe}};
+            a=data.labels;
+        console.log(a);
+        drawLineGraph(data, 'myChartline');
+        drawBarGraph(data, 'myChartBar');
+        // alert(data);
+
+      },
+      error: function(error_data) {
+        console.log(error_data);
+      }
+    })
+
+
+    function drawLineGraph(data, id) {
+      var labels = data.labels;
+      // var chartLabel = data.chartLabel;
+      alert(labels)
+      var chartdata = data.chartdata;
+      var ctx = document.getElementById(id).getContext('2d');
+      var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'line',
+
+        // The data for our dataset
+        data: {
+          labels: labels,
+          datasets: [{
+            label: '#PerUseramount',
+            backgroundColor: 'rgb(255, 100, 200)',
+            borderColor: 'rgb(55, 99, 132)',
+            data: chartdata,
+          }]
+        },
+
+        // Configuration options go here
+        options: {
+          scales: {
+              xAxes: [{
+              ticks: {
+                beginAtZero: true
+              }
+            }]
+          }
+        }
+
+      });
+    }
+
+    function drawBarGraph(data, id) {
+      var labels = data.labels;
+      var chartLabel = data.chartLabel;
+      var chartdata = data.chartdata;
+      var ctx = document.getElementById(id).getContext('2d');
+      var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: '#PerUseramount',
+            data: chartdata,
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(255, 206, 86, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(153, 102, 255, 0.2)',
+              'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+              'rgba(255, 99, 132, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(153, 102, 255, 1)',
+              'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true
+              }
+            }]
+          }
+        }
+      });
+    }
+  </script>
+                </main>
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; CheatingNot 2020</div>
+                            <div>
+                                <a href="#">Privacy Policy</a>
+                                &middot;
+                                <a href="#">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="js/scripts.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+       
+        <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+        <script src="assets/demo/datatables-demo.js"></script>
+    </body>
+</html>
