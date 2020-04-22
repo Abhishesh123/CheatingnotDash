@@ -1,8 +1,8 @@
 from django.shortcuts import render,redirect
 import datetime
 from django.contrib.sessions.models import Session
-from userprofile.models import Users
-from subscription.models import PlanPurchedByUser
+from userprofile.models import Users,Match,Reports
+from subscription.models import PlanPurchedByUser,PaytmPaymentStatus,PurchaseRequest
 from django.utils import timezone
 from dashboard.forms import  userForm
 from django.db.models import Sum,Count
@@ -66,12 +66,31 @@ def searchUser(request):
 def planpurchedbyuser(request):
     PlanPurchedBy = PlanPurchedByUser.objects.all()
     
-    return render(request, 'userSubscriptions.html', {'PlanPurchedByuser':PlanPurchedBy})
+    return render(request, 'userSubscriptions.html', 
+        {'PlanPurchedByuser':PlanPurchedBy}
+        )
 
 def planpurchedbyuserDetails(request, id):
     user = PlanPurchedByUser.objects.get(id = id)
     print(user)
-    return render(request, 'userSubscriptionDetails.html', {'planpurchedbyUserDetail':user})
-
-
-
+    return render(request, 'userSubscriptionDetails.html', 
+        {'planpurchedbyUserDetail':user}
+        )
+def matchedprofiles(request):
+    matchpro=Match.objects.all()
+    return render(request, 'matched.html', {'users':matchpro})
+def Matchprofiles(request, id):
+    matcheddel = Match.objects.get(id = id)
+    matcheddel.delete()
+    return redirect('/matchedprofiles')
+def Reported(request):
+    Report=Reports.objects.all()
+    return render(request,'report.html',{'Reports':Report})
+def paytmpaymentStatus(request):
+    PaytmPayment=PaytmPaymentStatus.objects.all()
+    return render(request,'paymentstatus.html',
+        {'paytmpayment':PaytmPayment}
+        )
+def ordermanagement(request):
+    order=PurchaseRequest.objects.all()
+    return render(request, 'ordermanage.html', {'order':order})

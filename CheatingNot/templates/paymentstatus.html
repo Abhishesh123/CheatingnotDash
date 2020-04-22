@@ -45,7 +45,7 @@
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
                 <div id="layoutSidenav_nav">
-                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             
@@ -63,25 +63,22 @@
                                 <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="/userList">ALL User </a>
                             </div>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="/userAnalytics"> User Analytics  </a>
+                                <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="#"> User Analytics  </a>
                             </div>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="/blockUserslist">All Block User  </a>
                             </div>
-                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts"
-                                ><div class="sb-nav-link-icon"> <i class="fas fa-rupee-sign"></i> </div>
-                                Payment Details
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
-                            ></a>
-                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="/paymentStatus">Payments </a><a class="nav-link" href="/StatusHistorys">Status</a></nav>
-                            </div>
+                            
+                            <a class="nav-link" href="/paytmpaymentStatus"
+                                ><div class="sb-nav-link-icon"><i class="fas fa-rupee-sign"></i></div>
+                                Payments</a
+                            >
                            
                             <a class="nav-link" href="/ordermanagement"
                                 ><div class="sb-nav-link-icon"><i class="fa fa-users"></i></div>
                                 Order Management</a
                             >
-                            <a class="nav-link" href="/userSubscription"
+                            <a class="nav-link" href="/planpurchedbyuser"
                                 ><div class="sb-nav-link-icon"><i class="fa fa-users"></i></div>
                                 User Subscription</a
                             >
@@ -113,7 +110,7 @@
                                 Manage Matched Profile</a
                             >
 
-                             <a class="nav-link" href="#"
+                             <a class="nav-link" href="/Reported"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-file"></i></div>
                                Reports</a
                             >
@@ -145,19 +142,19 @@
                        
                    
                         <div class="card mb-4">
-                            <div class="card-header"><i class="fas fa-table mr-1"></i>Payments History management</div>
+                            
                             <div class="row">
                             <div class="col-md-2">
-   <form action="/userListCSV/"  method="post">
+  <!--  <form action="/userListCSV/"  method="post">
         {% csrf_token %}
   
   <button type="submit" class="btn btn-info">Export</button>
 
-</form>
+</form> -->
   </div>
 <!-- </div> -->
 <div class="col-md-5">
-    <form action="/datefilter/"  method="post">
+    <!-- <form action="/datefilter/"  method="post">
         {% csrf_token %}
   <label for="birthday">From</label>
   <input type="date"  name="start">
@@ -167,14 +164,14 @@
 
   <button type="submit" class="btn btn-info">Click</button>
 
-</form>
+</form> -->
     </div>
 <div class="col-md-5">
- <form action="/search/" method="post">
+ <!-- <form action="/search/" method="post">
                     {% csrf_token %}
  <input type="text" name="q" placeholder="Search user name">
  <button type="submit" class="btn btn-info">Search Now</button>
-</form>
+</form> -->
 </div>
 </div>
                             <div class="card-body">
@@ -182,15 +179,16 @@
                                    <table class="table">
     <thead>
         <tr>
-            <th>User ID</th>
-            <th>Username</th>
+            <th> ID</th>
+        
             <th>Order Id</th>
-            <th>TXNDATE</th>
-            <th>TXNID</th>
-            <th>BANKNAME</th>
+            <th> Txn Type</th>
+            <th>Txn Id </th>
+            <th>Bank Name</th>
             <th>MID</th>
-            <th>TXNAMOUNT</th>
-            <th>STATUS</th>
+            <th>Txn Amount</th>
+            <th>Status</th>
+            
 
 
 
@@ -198,22 +196,17 @@
         </tr>
     </thead>
     <tbody>
-        {% for user in users %}
+        {% for pay in paytmpayment %}
        <tr>
-        <td>{{user.id}}</td>
-        <td>{{user.user}}</td>
-        <td>{{user.ORDERID}}</td>
-        <td>{{user.TXNDATE}}</td>
-        <td>{{user.TXNID}}</td>
-        <td>{{user.BANKNAME}}</td>
-        <td>{{user.MID}}</td>
-        <td>{{user.TXNAMOUNT}}</td>
-                {% for users in metrics %}
-<td>{{users.total_sales}}</td>
-       {% endfor %}
-
-
-        <td>{{user.STATUS}}</td>
+        <td>{{pay.id}}</td>
+     
+        <td>{{pay.order_id}}</td>
+        <td>{{pay.txn_type}}</td>
+        <td>{{pay.txn_id}}</td>
+        <td>{{pay.bank_name}}</td>
+        <td>{{pay.mid}}</td>
+        <td>{{pay.txn_amount}}</td>
+        <td>{{user.status}}</td>
 
         <td><a href="/Paymentdetail/{{user.id}}" target="_blank" rel="noopener noreferrer" class="text-center btn btn-primary">View</a></td>
        

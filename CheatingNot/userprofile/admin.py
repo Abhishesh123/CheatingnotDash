@@ -44,6 +44,9 @@ admin.site.register(PushNotificationMsg,PushNotificationMsgAdmin)
 class DiscountAdmin(admin.ModelAdmin):
     pass
 admin.site.register(Discount,DiscountAdmin)
+class MatchAdmin(admin.ModelAdmin):
+	pass
+admin.site.register(Match,MatchAdmin)
 
 
 

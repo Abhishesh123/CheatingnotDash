@@ -14,6 +14,10 @@ urlpatterns = [
     path('blockUserslist/',views.blockUserslist,name='blockUserslist'),
     path('searchUser/',views.searchUser,name="searchUser"),
     path('planpurchedbyuser/',views.planpurchedbyuser,name="planpurchedbyuser"),
-    path('planpurchedbyuserdetail/<int:id>',views.planpurchedbyuserDetails,name="planpurchedbyuserDetails")
-
+    path('planpurchedbyuserdetail/<int:id>',views.planpurchedbyuserDetails,name="planpurchedbyuserDetails"),
+    path('matchedprofiles/',views.matchedprofiles,name='matchedprofiles'),
+    path('DeleteMatchprofiles/<int:id>',views.Matchprofiles,name='Matchprofiles'),
+    path('Reported/',views.Reported,name="Reported"),
+    path('paytmpaymentStatus/',views.paytmpaymentStatus,name='paytmpaymentStatus'),
+    path('ordermanagement/',views.ordermanagement,name="ordermanagement")
 ]

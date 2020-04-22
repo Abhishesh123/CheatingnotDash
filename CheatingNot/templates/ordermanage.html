@@ -63,25 +63,22 @@
                                 <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="/userList">ALL User </a>
                             </div>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="/userAnalytics"> User Analytics  </a>
+                                <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="#"> User Analytics  </a>
                             </div>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="/blockUserslist">All Block User  </a>
                             </div>
-                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts"
-                                ><div class="sb-nav-link-icon"> <i class="fas fa-rupee-sign"></i> </div>
-                                Payment Details
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
-                            ></a>
-                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="/paymentStatus">Payments </a><a class="nav-link" href="/StatusHistorys">Status</a></nav>
-                            </div>
+                            
+                            <a class="nav-link" href="/paytmpaymentStatus"
+                                ><div class="sb-nav-link-icon"><i class="fas fa-rupee-sign"></i></i></div>
+                                Payments</a
+                            >
                            
                             <a class="nav-link" href="/ordermanagement"
                                 ><div class="sb-nav-link-icon"><i class="fa fa-users"></i></div>
                                 Order Management</a
                             >
-                            <a class="nav-link" href="/userSubscription"
+                            <a class="nav-link" href="/planpurchedbyuser"
                                 ><div class="sb-nav-link-icon"><i class="fa fa-users"></i></div>
                                 User Subscription</a
                             >
@@ -113,7 +110,7 @@
                                 Manage Matched Profile</a
                             >
 
-                             <a class="nav-link" href="#"
+                             <a class="nav-link" href="/Reported"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-file"></i></div>
                                Reports</a
                             >
@@ -142,16 +139,32 @@
                 <main style="background-color: #ecf0f5;">
                     <div class="container-fluid">
                         <h1 class="mt-4">Order Management</h1>
-                       
+                        <!-- <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item active">Dashboard</li>
+                        </ol> -->
                         
                    
                         <div class="card mb-4">
-                           
+                            
                             <div class="row">
                             <div class="dropdown col-md-2">
        
 </div>
+<div class="col-md-5">
+    <!-- form action="/userSubscriptionsCSV/"  method="post">
+        {% csrf_token %}
+  
+  <button type="submit" class="btn btn-info">Export</button>
 
+</form> -->
+    </div>
+<div class="col-md-5">
+ <!-- <form action="/searchSubscriptions/" method="post">
+                    {% csrf_token %}
+ <input type="text" name="search" placeholder="Search user name">
+ <button type="submit" class="btn btn-info">Search Now</button>
+</form>
+</div> -->
 
 </div>
                             <div class="card-body">
@@ -159,13 +172,12 @@
                                  <table class="table">
     <thead>
         <tr>
-            <th>Order ID</th>
-            <th>Subscriptions ID</th>
+            <th>Plan ID</th>
             <th>Username</th>
             <th> Plan Name</th>
-            <th>Month</th>
             <th>Price</th>
-            <th> Status</th>
+            <th>Purched At</th>
+            
 
 
             <th colspan="3" class="text-center">Action</th>
@@ -174,13 +186,12 @@
     <tbody>
         {% for order in order %}
        <tr>
-        <td>{{order.id}}</td>
-        <td>{{order.subsid}}</td>
+        <td>{{order.plan_id}}</td>
         <td>{{order.user}}</td>
-        <td>{{order.planName}}</td>
-        <td>{{order.durationMonth}}</td>
-        <td>&#x20B9;{{order.price}}</td>
-        <td>{{order.status}}</td>
+        <td>{{order.plan_name}}</td>
+        <td>&#x20B9;{{order.plan_price_amount}}</td>
+        <td>{{order.plan_purched_at}}</td>
+        
         <td><a href="#" rel="noopener noreferrer" class="btn btn-xs btn-primary"  ><i  style="font-size:20px"class="fa fa-eye"></i>
 </a></td>
        
