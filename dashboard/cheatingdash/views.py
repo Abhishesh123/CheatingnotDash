@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from cheatingdash.forms import ContactForm, userForm, empForm
 from cheatingdash.models import Employee
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
 def Index(request):
@@ -42,7 +43,17 @@ def blockUsers(request):
     
 def empList(request):
     emp = Employee.objects.all()
+    page = request.GET.get('page', 1)
+    paginator = Paginator(emp, 2)
+    try:
+        emps = paginator.page(page)
+
+    except PageNotAnInteger:
+        emps = paginator.page(1)
+    except EmptyPage:
+        emps = paginator.page(page.num_pages)
     context =  {
+        'emps':emps,
         'emp':emp
     }
     return render(request, 'emplist.html',context)
