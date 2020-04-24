@@ -10,17 +10,26 @@ from django.db.models import Sum,Count
 # Create your views here.
 
 def Index(request):
-	today      = datetime.date.today()
-	todayusers = Users.objects.filter(create_at__date=today).count()
-    # todaysales = PlanPurchedByUser.objects.filter(plan_purched_at__date=today).aggregate(total_plan_price_amount=Sum('plan_price_amount'))
-    # totalsales = PlanPurchedByUser.objects.aggregate(total_plan_price_amount=Sum('plan_price_amount'))
-	totaluser  = Users.objects.all().count()
+	today = datetime.date.today()
+	todayusers = Users.objects.filter(create_at__date = today).count()
+	totaluser = Users.objects.all().count()
+	todayMatch = Match.objects.filter(create_at__date = today).count()
+	totalMatch = Match.objects.all().count()
+	todaysales = PlanPurchedByUser.objects.filter(plan_purched_at__date = today).aggregate(total_plan_price_amount = Sum('plan_price_amount'))
+	totalsales = PlanPurchedByUser.objects.aggregate(total_plan_price_amount = Sum('plan_price_amount'))
+	totalPlus=PlanPurchedByUser.objects.filter(plan_name__startswith="Plus").count()
+	totalSuper=PlanPurchedByUser.objects.filter(plan_name__startswith="Super").count()
+	
     
 	return render(request,'homepage.html',{
 	'todayuser':todayusers,
-	'totaluser':totaluser
-    # 'todaysale':todaysales,
-    # 'totalsale':totalsales
+	'totaluser':totaluser,
+    'todaysale':todaysales,
+    'totalsale':totalsales,
+    'todayMatchs':todayMatch,
+    'totalMatchs':totalMatch,
+    'totalPluss':totalPlus,
+    'totalSupers':totalSuper
 
 	})
 
@@ -72,7 +81,7 @@ def planpurchedbyuser(request):
 
 def planpurchedbyuserDetails(request, id):
     user = PlanPurchedByUser.objects.get(id = id)
-    print(user)
+  
     return render(request, 'userSubscriptionDetails.html', 
         {'planpurchedbyUserDetail':user}
         )
@@ -86,6 +95,10 @@ def Matchprofiles(request, id):
 def Reported(request):
     Report=Reports.objects.all()
     return render(request,'report.html',{'Reports':Report})
+def deleteReported(request, id):
+    Reporteddel = Reports.objects.get(id = id)
+    Reporteddel.delete()
+    return redirect('/Reported')
 def paytmpaymentStatus(request):
     PaytmPayment=PaytmPaymentStatus.objects.all()
     return render(request,'paymentstatus.html',
@@ -94,3 +107,9 @@ def paytmpaymentStatus(request):
 def ordermanagement(request):
     order=PurchaseRequest.objects.all()
     return render(request, 'ordermanage.html', {'order':order})
+def ordermanagementDetails(request, id):
+    user = PurchaseRequest.objects.get(id = id)
+   
+    return render(request, 'orderdetails.html', 
+        {'planpurchedbyUserDetail':user}
+        )

@@ -19,5 +19,7 @@ urlpatterns = [
     path('DeleteMatchprofiles/<int:id>',views.Matchprofiles,name='Matchprofiles'),
     path('Reported/',views.Reported,name="Reported"),
     path('paytmpaymentStatus/',views.paytmpaymentStatus,name='paytmpaymentStatus'),
-    path('ordermanagement/',views.ordermanagement,name="ordermanagement")
+    path('ordermanagement/',views.ordermanagement,name="ordermanagement"),
+    path('ordermanagementDetails/<int:id>',views.ordermanagementDetails,name="ordermanagementDetails"),
+    path('deleteReported/<int:id>',views.deleteReported,name="deleteReported"),
 ]
