@@ -6,6 +6,9 @@ from subscription.models import PlanPurchedByUser,PaytmPaymentStatus,PurchaseReq
 from django.utils import timezone
 from dashboard.forms import  userForm
 from django.db.models import Sum,Count
+from django.http import HttpResponse
+import csv
+
 
 # Create your views here.
 
@@ -113,3 +116,27 @@ def ordermanagementDetails(request, id):
     return render(request, 'orderdetails.html', 
         {'planpurchedbyUserDetail':user}
         )
+
+def userListCSV(request):
+
+    # Get all data from UserDetail Databse Table
+    users = Users.objects.all()
+
+    # Create the HttpResponse object with the appropriate CSV header.
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="userlist.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['User ID', 'Username', 'Phone', 'DOB','Created Date'])
+
+    for user in users:
+        writer.writerow([user.id, user.user,  user.phone_no,user.dob,user.create_at])
+
+    return response
+def datefilter(request):
+    if request.method == 'POST':
+        data = request.POST['start']
+        print(data)
+        user  = Users.objects.filter(create_at__icontains= data)  
+
+        return render(request, 'userlisting.html', {'users':user})

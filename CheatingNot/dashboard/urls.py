@@ -22,4 +22,6 @@ urlpatterns = [
     path('ordermanagement/',views.ordermanagement,name="ordermanagement"),
     path('ordermanagementDetails/<int:id>',views.ordermanagementDetails,name="ordermanagementDetails"),
     path('deleteReported/<int:id>',views.deleteReported,name="deleteReported"),
+    path('userListCSV/',views.userListCSV,name='userListCSV'),
+    path('datefilter/',views.datefilter,name="datefilter"),
 ]

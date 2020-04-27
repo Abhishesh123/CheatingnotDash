@@ -140,30 +140,32 @@
                     <div class="container-fluid">
                         <h1 class="mt-4">Dashboard</h1>
                         
-                       <!--  <div class="">
-    <form action="/userListCSV/"  method="post">
-        {% csrf_token %}
-  
-  <button type="submit" class="btn btn-info">Export</button>
-
-</form>
-    </div> -->
+                        
                    
                         <div class="card mb-4">
 
                             <!-- <div class="card-header"><i  class="fas fa-users mr-1"></i><a href="/userList">Total User</a></div> -->
                             <div class="row">
                            
-<div class="col-md-8">
-    <!-- <form action="/datefilter/"  method="post">
+<div class="col-md-4">
+    <form action="/datefilter/" style="margin-top: 18px;margin-left: 20px;" method="post">
         {% csrf_token %}
-  <label for="birthday">Date</label>
+  
   <input type="date"  name="start">
     
 
-  <button type="submit" class="btn btn-info">Click</button> -->
+  <button type="submit" class="btn-sm btn-info">Click</button>
 
 </form>
+    </div>
+    <div class="col-md-4">
+    <form action="/userListCSV/" style="margin-top: 18px; " method="post">
+        {% csrf_token %}
+  
+  <button type="submit"  class="btn-sm btn-info">CSV</button>
+
+</form>
+
     </div>
 <div class="col-md-4" >
  <form action="/searchUser/" method="post" style="margin-top: 18px;">
@@ -186,7 +188,7 @@
             <th>Username</th>
            
             <th>Phone</th>
-            <th>Address</th>
+            <th>DOB</th>
             <th>Create_at</th>
 
 
@@ -217,6 +219,33 @@
        {% endfor %}
     </tbody>
 </table>
+    <div class="container-fluid">
+    <div class="row">
+    <div class="col-xl-6">
+        {% if emps.has_other_pages %}
+  <ul class="pagination">
+    {% if emps.has_previous %}
+      <li class="page-item"><a href="?page={{ emps.previous_page_number }}" class="page-link">&laquo;</a></li>
+    {% else %}
+      <li class="disabled page-item page-link"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in emps.paginator.page_range %}
+      {% if emps.number == i %}
+        <li class="active page-item page-link"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li class="page-item"><a href="?page={{ i }}" class="page-link">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if emps.has_next %}
+      <li class="page-item"><a href="?page={{ emps.next_page_number }}" class="page-link">&raquo;</a></li>
+    {% else %}
+      <li class="disabled page-item page-link"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+    </div>
+    </div>
+    </div>
                      </div>
                             </div>
                         </div>
