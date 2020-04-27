@@ -141,43 +141,19 @@ def searchUser(request):
     if request.method == 'POST':
         data = request.POST['searchnow']
         date_joined = request.POST['datejoined']
-        filters = request.POST['filter']
-        print(data)
-        try:
-            age = request.POST['age']
-            city = request.POST['city']
-            country = request.POST['country']
-           
-            print(age)
-            print(city)
-            print(country)
-            
-            try:
-                gender = request.POST['gender']
-                print(gender)
-
-            except KeyError:
-                pass
-
-        except KeyError:
-            pass
+        date_joined1 = request.POST['datejoined1']
+        print(date_joined1)
         
-        
-        print(filters)
        
-        user  = User.objects.filter(first_name__icontains= data) or User.objects.filter(last_name__icontains= data) or User.objects.filter(username__icontains= data) or User.objects.filter(email__icontains= data) or User.objects.filter(date_joined__icontains= date_joined)
-
-        if filters == 'Active':
-            user  = User.objects.filter(is_active = True)
-
-       
-
+        # user  = User.objects.filter(first_name__icontains= data) or User.objects.filter(date_joined__icontains= date_joined) or User.objects.filter(last_name__icontains= data) or User.objects.filter(username__icontains= data) or User.objects.filter(email__icontains= data) or User.objects.filter(date_joined__icontains= date_joined)
         
-        column_list = ['Active','Age','City','Country','Gender']
+        user = User.objects.filter(date_joined__range = (date_joined, date_joined1))
+        print(user)
+
         context =  {
             'users':user,
-            'Total':user.count(),
-            'columns':column_list
+            'Total':user.count()
+           
             }
         return render(request, 'userlist.html', context)
 
