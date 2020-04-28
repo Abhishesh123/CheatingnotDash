@@ -8,6 +8,7 @@ from dashboard.forms import  userForm
 from django.db.models import Sum,Count
 from django.http import HttpResponse
 import csv
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 # Create your views here.
@@ -38,7 +39,17 @@ def Index(request):
 
 def userList(request):
     user = Users.objects.filter(active = True)
-    return render(request, 'userlisting.html', {'users':user})
+    page = request.GET.get('page', 1)
+    paginator = Paginator(user, 2)
+    try:
+        userlists = paginator.page(page)
+
+    except PageNotAnInteger:
+        userlists = paginator.page(1)
+    except EmptyPage:
+        userlists = paginator.page(page.num_pages)
+    
+    return render(request, 'userlisting.html', {'users':user,'userlists':userlists})
 def Detailsuser(request, id):
     user = Users.objects.get(id = id)
     print(user)
@@ -65,7 +76,16 @@ def unblockuser(request, id):
 
 def blockUserslist(request):
     user = Users.objects.filter(active = False)
-    return render(request, 'blockuserlist.html', {'users':user})
+    page = request.GET.get('page', 1)
+    paginator = Paginator(user, 2)
+    try:
+        blocks = paginator.page(page)
+
+    except PageNotAnInteger:
+        blocks = paginator.page(1)
+    except EmptyPage:
+        blocks = paginator.page(page.num_pages)
+    return render(request, 'blockuserlist.html', {'users':user,'blocks':blocks})
 
 def searchUser(request):
     if request.method == 'POST':
@@ -77,9 +97,19 @@ def searchUser(request):
         return render(request, 'userlisting.html', {'users':user})
 def planpurchedbyuser(request):
     PlanPurchedBy = PlanPurchedByUser.objects.all()
+    page = request.GET.get('page', 1)
+    paginator = Paginator(PlanPurchedBy, 2)
+    try:
+        subs = paginator.page(page)
+
+    except PageNotAnInteger:
+        subs = paginator.page(1)
+    except EmptyPage:
+        subs = paginator.page(page.num_pages)
     
     return render(request, 'userSubscriptions.html', 
-        {'PlanPurchedByuser':PlanPurchedBy}
+        {'PlanPurchedByuser':PlanPurchedBy,
+        'subs':subs}
         )
 
 def planpurchedbyuserDetails(request, id):

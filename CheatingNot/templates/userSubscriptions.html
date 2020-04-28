@@ -202,6 +202,33 @@
        {% endfor %}
     </tbody>
 </table>
+<div class="container-fluid">
+    <div class="row">
+    <div class="col-xl-6">
+        {% if subs.has_other_pages %}
+  <ul class="pagination">
+    {% if subs.has_previous %}
+      <li class="page-item"><a href="?page={{ subs.previous_page_number }}" class="page-link">&laquo;</a></li>
+    {% else %}
+      <li class="disabled page-item page-link"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in subs.paginator.page_range %}
+      {% if subs.number == i %}
+        <li class="active page-item page-link"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li class="page-item"><a href="?page={{ i }}" class="page-link">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if subs.has_next %}
+      <li class="page-item"><a href="?page={{ subs.next_page_number }}" class="page-link">&raquo;</a></li>
+    {% else %}
+      <li class="disabled page-item page-link"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+    </div>
+    </div>
+    </div>
                                 </div>
                             </div>
                         </div>
