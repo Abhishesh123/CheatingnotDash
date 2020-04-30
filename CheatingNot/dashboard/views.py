@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 import datetime
 from django.contrib.sessions.models import Session
 from userprofile.models import Users,Match,Reports
-from subscription.models import PlanPurchedByUser,PaytmPaymentStatus,PurchaseRequest
+from subscription.models import PlanPurchedByUser,PaytmPaymentStatus,PurchaseRequest,Accessories,AccessoriesDetails
 from django.utils import timezone
 from dashboard.forms import  userForm
 from django.db.models import Sum,Count
@@ -170,3 +170,48 @@ def datefilter(request):
         user  = Users.objects.filter(create_at__icontains= data)  
 
         return render(request, 'userlisting.html', {'users':user})
+def Access(request):
+    return render(request,'addacess.html')
+
+def AddAccessories(request):
+    if request.method == 'POST':
+            if request.POST.get('name') and request.POST.get('accessories')and request.POST.get('is_active'):
+                accessories=Accessories()
+                accessories.name= request.POST.get('name')
+                print(accessories.name)
+                accessories.accessories= request.POST.get('accessories')
+                accessories.is_active= request.POST.get('is_active')
+                accessories.save()
+                
+                return render(request,'addacess.html')  
+
+            else:
+                return render(request,'addacess.html')
+def DetailsAccessories(request):
+    return render(request,'DetailsAccessories.html')
+
+def AddAccessoriesdetails(request):
+    if request.method == 'POST':
+            if request.POST.get('name') and request.POST.get('price') and request.POST.get('validity') and request.POST.get('Description') and request.POST.get('remaining_hi') and request.POST.get('remaining_hearts') and request.POST.get('remaining_boosts') and request.POST.get('remaining_talktime') and request.POST.get('remaining_superlikes') and request.POST.get('wallet_percentage') and request.POST.get('discount_percentage'):
+                accessories=AccessoriesDetails()
+                accessories.name= request.POST.get('name')
+                accessories.accessories= request.POST.get('price')
+                accessories.is_active= request.POST.get('validity')
+                accessories.accessories= request.POST.get('Description')
+                accessories.is_active= request.POST.get('remaining_hi')
+                accessories.accessories= request.POST.get('remaining_hearts')
+                accessories.is_active= request.POST.get('remaining_boosts')
+                accessories.accessories= request.POST.get('remaining_boosts')
+                accessories.is_active= request.POST.get('remaining_talktime')
+                accessories.is_active= request.POST.get('remaining_superlikes')
+                accessories.is_active= request.POST.get('wallet_percentage')
+                accessories.is_active= request.POST.get('discount_percentage')
+                accessories.save()
+                
+                return render(request,'DetailsAccessories.html')  
+
+            else:
+                return render(request,'DetailsAccessories.html')
+
+    
+    

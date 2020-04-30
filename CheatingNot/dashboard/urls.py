@@ -24,4 +24,8 @@ urlpatterns = [
     path('deleteReported/<int:id>',views.deleteReported,name="deleteReported"),
     path('userListCSV/',views.userListCSV,name='userListCSV'),
     path('datefilter/',views.datefilter,name="datefilter"),
+    path('Access/',views.Access,name="Access"),
+    path('AddAccessories/',views.AddAccessories,name='AddAccessories'),
+    path('DetailsAccessories/',views.DetailsAccessories,name='DetailsAccessories'),
+    path('AddAccessoriesdetails/',views.AddAccessoriesdetails,name='AddAccessoriesdetails'),
 ]
