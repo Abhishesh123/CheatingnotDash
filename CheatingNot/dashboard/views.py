@@ -9,10 +9,12 @@ from django.db.models import Sum,Count
 from django.http import HttpResponse
 import csv
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
-
+@login_required(login_url='/login')
 def Index(request):
 	today = datetime.date.today()
 	todayusers = Users.objects.filter(create_at__date = today).count()
@@ -37,6 +39,22 @@ def Index(request):
 
 	})
 
+def Login(request):
+    if request.method == 'POST':
+        username  = request.POST.get('username')
+        password  = request.POST.get('password')
+        user = authenticate(username = username, password=  password)
+        if user:
+            if user.is_active:
+                login(request,user)
+                return render(request, 'homepage.html')
+        else:
+            return HttpResponse("Invalid login details..")
+    else:
+        return render(request,'login.html')
+def Logout(request):
+    logout(request)
+    return redirect('/')
 def userList(request):
     user = Users.objects.filter(active = True)
     page = request.GET.get('page', 1)
