@@ -231,5 +231,26 @@ def AddAccessoriesdetails(request):
             else:
                 return render(request,'DetailsAccessories.html')
 
+
+def userAnalytics(request):
+    labelpro = []
+    datapro = []
+    
+    UserProfiles = Users.objects.filter(create_at__lte=datetime.datetime.today(), create_at__gt=datetime.datetime.today()-datetime.timedelta(days=30)).\
+    values('create_at__month').annotate(count=Count('id'))
+    for usersdatapro in UserProfiles:
+        labelpro.append(usersdatapro['create_at__month'])
+        datapro.append(usersdatapro['count'])
+        prosdata={
+            "plabels":labelpro,
+            "pdata":datapro
+        }
+        print(prosdata)
+    print(UserProfiles)
+    
+   
+    return render(request,'useranalytics.html',{'prosdatas':prosdata})
+
+
     
     

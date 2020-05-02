@@ -30,4 +30,5 @@ urlpatterns = [
     path('AddAccessories/',views.AddAccessories,name='AddAccessories'),
     path('DetailsAccessories/',views.DetailsAccessories,name='DetailsAccessories'),
     path('AddAccessoriesdetails/',views.AddAccessoriesdetails,name='AddAccessoriesdetails'),
+    path('userAnalytics/',views.userAnalytics,name="userAnalytics")
 ]
