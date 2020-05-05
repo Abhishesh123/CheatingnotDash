@@ -250,6 +250,21 @@ def userAnalytics(request):
     
    
     return render(request,'useranalytics.html',{'prosdatas':prosdata})
+def subsAnalytics(request):
+    labelss = []
+    datas = []
+    PurchaseRequests=PlanPurchedByUser.objects.values('order_id').annotate(paytm_amount=Sum('paytm_amount'))
+
+    for Purchase in PurchaseRequests:
+        labelss.append(Purchase['order_id'])
+        datas.append(Purchase['paytm_amount'])
+        data={
+            "ulabels":labelss,
+            "udata":datas
+        }
+        print(data)
+    return render(request,'subsanalytics.html',{'datas':data})
+
 
 
     
