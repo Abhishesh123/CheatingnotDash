@@ -32,3 +32,8 @@ class PlanPurchedByUserAdmin(admin.ModelAdmin):
     pass
 admin.site.register(PlanPurchedByUser, PlanPurchedByUserAdmin)
 
+class PaytmPaymentStatusAdmin(admin.ModelAdmin):
+    pass
+admin.site.register(PaytmPaymentStatus, PaytmPaymentStatusAdmin)
+
+

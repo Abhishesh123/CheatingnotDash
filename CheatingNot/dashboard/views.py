@@ -155,6 +155,10 @@ def paytmpaymentStatus(request):
     return render(request,'paymentstatus.html',
         {'paytmpayment':PaytmPayment}
         )
+
+def Paymentdetail(request, id):
+    user = PaytmPaymentStatus.objects.get(id = id)
+    return render(request, 'paymentdetails.html', {'user': user})
 def ordermanagement(request):
     order=PurchaseRequest.objects.all()
     return render(request, 'ordermanage.html', {'order':order})

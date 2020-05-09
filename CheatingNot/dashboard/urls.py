@@ -32,4 +32,6 @@ urlpatterns = [
     path('AddAccessoriesdetails/',views.AddAccessoriesdetails,name='AddAccessoriesdetails'),
     path('userAnalytics/',views.userAnalytics,name="userAnalytics"),
     path('subsAnalytics/',views.subsAnalytics,name="subsAnalytics"),
+    path('Paymentdetail/<int:id>', views.Paymentdetail, name='Paymentdetail_id'),
+
 ]
