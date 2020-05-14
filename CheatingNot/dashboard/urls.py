@@ -23,6 +23,7 @@ urlpatterns = [
     path('paytmpaymentStatus/',views.paytmpaymentStatus,name='paytmpaymentStatus'),
     path('ordermanagement/',views.ordermanagement,name="ordermanagement"),
     path('ordermanagementDetails/<int:id>',views.ordermanagementDetails,name="ordermanagementDetails"),
+    path('orderAnalytics/',views.orderAnalytics,name="orderAnalytics"),
     path('deleteReported/<int:id>',views.deleteReported,name="deleteReported"),
     path('userListCSV/',views.userListCSV,name='userListCSV'),
     path('datefilter/',views.datefilter,name="datefilter"),
@@ -33,5 +34,7 @@ urlpatterns = [
     path('userAnalytics/',views.userAnalytics,name="userAnalytics"),
     path('subsAnalytics/',views.subsAnalytics,name="subsAnalytics"),
     path('Paymentdetail/<int:id>', views.Paymentdetail, name='Paymentdetail_id'),
+    path('searchOrder/',views.searchOrder,name="searchOrder"),
+    path('OrderCSV/',views.OrderCSV,name="OrderCSV"),
 
 ]

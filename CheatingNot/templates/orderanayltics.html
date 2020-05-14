@@ -17,6 +17,19 @@
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
+         <script src='https://cdnjs.cloudflare.com/ajax/libs/decimal.js/7.1.1/decimal.min.js'></script>
+
+
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -44,7 +57,7 @@
         </nav>
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
-               <div id="layoutSidenav_nav">
+                <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
@@ -68,17 +81,20 @@
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="/blockUserslist">All Block User  </a>
                             </div>
-                            
-                            <a class="nav-link" href="/paytmpaymentStatus"
-                                ><div class="sb-nav-link-icon"><i class="fas fa-rupee-sign"></i></i></div>
-                                Payments</a
-                            >
+                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts"
+                                ><div class="sb-nav-link-icon"> <i class="fas fa-rupee-sign"></i> </div>
+                                Payment Details
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
+                            ></a>
+                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="/paymentStatus">Payments </a><a class="nav-link" href="/StatusHistorys">Status</a></nav>
+                            </div>
                            
                             <a class="nav-link" href="/ordermanagement"
                                 ><div class="sb-nav-link-icon"><i class="fa fa-users"></i></div>
                                 Order Management</a
                             >
-                            <a class="nav-link" href="/planpurchedbyuser"
+                            <a class="nav-link" href="/userSubscription"
                                 ><div class="sb-nav-link-icon"><i class="fa fa-users"></i></div>
                                 User Subscription</a
                             >
@@ -90,21 +106,23 @@
                             ></a>
                             <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                      <a class="nav-link" href="#"><div class="sb-nav-link-icon"></div>
-                               Add  Plan</a>
-
-                                    <a class="nav-link" href="#"><div class="sb-nav-link-icon"></div>
-                                Add Plan Details</a>
-
-                                    
+                                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth"
+                                        >Add Plan
+                                        </a>
+                                   
+                                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError"
+                                        >Add Plan Details
+                                       
+                                    </a>
+                                    <a class="nav-link collapsed" href="/AddAccessories" data-toggle="collapse" data-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError"
+                                        > Accessories
+                                       
+                                    </a>
+                                    <a class="nav-link collapsed" href="/AddAccessoriesdetails" data-toggle="collapse" data-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError"
+                                        > Accessories Details
+                                       
                                     </a>
                                    
-                                      <a class="nav-link" href="/Access"><div class="sb-nav-link-icon"></div>
-                                Accessories</a>
-                                    
-                                     <a class="nav-link" href="/DetailsAccessories"><div class="sb-nav-link-icon"></div>
-                                Accessories Details</a>
-
                                 </nav>
                             </div>
                              <a class="nav-link" href="/matchedprofiles"
@@ -112,7 +130,7 @@
                                 Manage Matched Profile</a
                             >
 
-                             <a class="nav-link" href="/Reported"
+                             <a class="nav-link" href="#"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-file"></i></div>
                                Reports</a
                             >
@@ -140,74 +158,131 @@
             <div id="layoutSidenav_content">
                 <main style="background-color: #ecf0f5;">
                     <div class="container-fluid">
-                        <h1 class="mt-4">Order Management</h1>
-                        <!-- <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Dashboard</li>
-                        </ol> -->
-                        
-                   
-                        <div class="card mb-4">
-                            
-                            <div class="row">
-                            <div class="dropdown col-md-2">
-       
-</div>
-<div class="col-md-5">
-    <form action="/OrderCSV/"  method="post">
-        {% csrf_token %}
+                        <h1 class="mt-4">Order analytics</h1>
+                       
+                     
+
+
+    <div class="col-md-6">
   
-  <button type="submit" class="btn btn-info">Export</button>
-
-</form>
+      <canvas id="Chartline"></canvas>
     </div>
-<div class="col-md-5">
- <form action="/searchOrder/" method="post">
-                    {% csrf_token %}
- <input type="text" name="search" placeholder="Search by order and plan id">
- <button type="submit" class="btn btn-info">Search Now</button>
-</form>
-</div>
-
-</div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                 <table class="table">
-    <thead>
-        <tr>
-            <th>Plan ID</th>
-            <th>Username</th>
-            <th> Plan Name</th>
-            <th>Price</th>
-            <th>Purched At</th>
-            
-
-
-            <th colspan="3" class="text-center">Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for order in order %}
-       <tr>
-        <td>{{order.plan_id}}</td>
-        <td>{{order.user}}</td>
-        <td>{{order.plan_name}}</td>
-        <td>&#x20B9;{{order.plan_price_amount}}</td>
-        <td>{{order.plan_purched_at}}</td>
-        
-        <td><a href="/ordermanagementDetails/{{user.id}}" rel="noopener noreferrer" class="btn btn-xs btn-primary"  ><i  style="font-size:20px"class="fa fa-eye"></i>
-</a></td>
-       
-       
-        
-       
-       </tr>
-       {% endfor %}
-    </tbody>
-</table>
-                                </div>
-                            </div>
+    <div class="col-md-6">
+      <canvas id="ChartBar"></canvas>
+    </div>
+  </div>
+  
+           
+                       
+                       </div>
                         </div>
                     </div>
+      
+
+ 
+
+  
+
+  <script>
+    var endpoint = '/';
+    // console.log(data);
+    $.ajax({
+      method: "GET",
+      url: endpoint,
+      success: function(data) {
+        var data={{datas|safe}};
+            a=data.ulabels;
+            // alert(datass);
+            alert(data);
+        lineGraphs(data, 'Chartline');
+        barGraphs(data, 'ChartBar');
+        // alert(data);
+
+      },
+      error: function(error_data) {
+        console.log(error_data);
+      }
+    })
+
+
+    function lineGraphs(data, id) {
+      var labels = data.ulabels;
+      // var chartLabel = data.chartLabel;
+      alert(labels)
+      var chartdata = data.udata;
+      var ctx = document.getElementById(id).getContext('2d');
+      var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'line',
+
+        // The data for our dataset
+        data: {
+          labels: labels,
+          datasets: [{
+            label: '#MonthwiseOrder',
+            backgroundColor: 'rgb(255, 100, 200)',
+            borderColor: 'rgb(55, 99, 132)',
+            data: chartdata,
+          }]
+        },
+
+        // Configuration options go here
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+
+      });
+    }
+
+    function barGraphs(data, id) {
+      var labels = data.ulabels;
+      // var chartLabel = datass.chartLabel;
+      var chartdata = data.udata;
+      var ctx = document.getElementById(id).getContext('2d');
+      var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: '#MonthwiseOrder',
+            data: chartdata,
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(255, 206, 86, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(153, 102, 255, 0.2)',
+              'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+              'rgba(255, 99, 132, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(153, 102, 255, 1)',
+              'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+          }]
+        },
+       options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+      });
+    }
+  </script>
                 </main>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid">

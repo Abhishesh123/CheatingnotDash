@@ -140,7 +140,7 @@ class PurchaseRequest(models.Model):
     
     plan_request_at = models.DateTimeField(auto_now_add=True)
      
-    def __str__(self):
+    def __unicode__(self):
         return self.user.user_id
 #     
 

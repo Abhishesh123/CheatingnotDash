@@ -36,4 +36,10 @@ class PaytmPaymentStatusAdmin(admin.ModelAdmin):
     pass
 admin.site.register(PaytmPaymentStatus, PaytmPaymentStatusAdmin)
 
+class PurchaseRequestAdmin(admin.ModelAdmin):
+	pass
+admin.site.register(PurchaseRequest, PurchaseRequestAdmin)
+
+
+
 

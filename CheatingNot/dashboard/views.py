@@ -269,6 +269,47 @@ def subsAnalytics(request):
         print(data)
     return render(request,'subsanalytics.html',{'datas':data})
 
+def orderAnalytics(request):
+    labelss = []
+    datas = []
+    PurchaseRequests=PurchaseRequest.objects.values('order_id').annotate(paytm_amount=Sum('paytm_amount'))
+
+    for Purchase in PurchaseRequests:
+        labelss.append(Purchase['order_id'])
+        datas.append(Purchase['paytm_amount'])
+        data={
+            "ulabels":labelss,
+            "udata":datas
+        }
+        print(data)
+    return render(request,'orderanayltics.html',{'datas':data})
+
+def searchOrder(request):
+    if request.method == 'POST':
+        data = request.POST['search']
+        # data = request.POST['datejoined']
+        order  = PurchaseRequest.objects.filter(order_id__icontains= data) or PurchaseRequest.objects.filter(plan_id__icontains= data) 
+
+        return render(request, 'ordermanage.html', {'users':order})
+
+def OrderCSV(request):
+
+    # Get all data from UserDetail Databse Table
+    orders = PurchaseRequest.objects.all()
+
+    # Create the HttpResponse object with the appropriate CSV header.
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="order.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['User ID', 'Username', 'Plan Id', 'Plan Name','Accessories Id','Accessories Name','Order Id','Paytm Amount','Cashback Amount','Discount Amount','Wallet Amount','Plan Price Amount','Plan Request At'])
+
+    for order in orders:
+        writer.writerow([order.id, order.user,order.plan_id,order.plan_name,order.accessories_id,order.accessories_name,order.order_id,order.paytm_amount,order.cashback_amount,order.discount_amount,order.wallet_amount,order.plan_price_amount,order.plan_request_at])
+
+    return response
+
+
 
 
     
