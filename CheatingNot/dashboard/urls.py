@@ -36,5 +36,7 @@ urlpatterns = [
     path('Paymentdetail/<int:id>', views.Paymentdetail, name='Paymentdetail_id'),
     path('searchOrder/',views.searchOrder,name="searchOrder"),
     path('OrderCSV/',views.OrderCSV,name="OrderCSV"),
+    path('wallet/',views.wallet,name='wallet'),
+    path('UserdailyDose/',views.UserdailyDose,name="UserdailyDose"),
 
 ]

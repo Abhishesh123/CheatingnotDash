@@ -39,6 +39,10 @@ admin.site.register(PaytmPaymentStatus, PaytmPaymentStatusAdmin)
 class PurchaseRequestAdmin(admin.ModelAdmin):
 	pass
 admin.site.register(PurchaseRequest, PurchaseRequestAdmin)
+class WalletAdmin(admin.ModelAdmin):
+	pass
+admin.site.register(Wallet, WalletAdmin)
+
 
 
 

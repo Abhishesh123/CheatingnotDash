@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 import datetime
 from django.contrib.sessions.models import Session
 from userprofile.models import Users,Match,Reports
-from subscription.models import PlanPurchedByUser,PaytmPaymentStatus,PurchaseRequest,Accessories,AccessoriesDetails
+from subscription.models import PlanPurchedByUser,PaytmPaymentStatus,PurchaseRequest,Accessories,AccessoriesDetails,Wallet,UserDailyDose
 from django.utils import timezone
 from dashboard.forms import  userForm
 from django.db.models import Sum,Count
@@ -308,6 +308,13 @@ def OrderCSV(request):
         writer.writerow([order.id, order.user,order.plan_id,order.plan_name,order.accessories_id,order.accessories_name,order.order_id,order.paytm_amount,order.cashback_amount,order.discount_amount,order.wallet_amount,order.plan_price_amount,order.plan_request_at])
 
     return response
+
+def wallet(request):
+    walltes=Wallet.objects.all()
+    return render(request,'wallet.html',{'walltes':walltes})
+def UserdailyDose(request):
+    UserDaily=UserDailyDose.objects.all()
+    return render(request,'userdailydose.html',{'userdailydose':UserDaily})
 
 
 
