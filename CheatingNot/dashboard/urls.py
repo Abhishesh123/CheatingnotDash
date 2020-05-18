@@ -38,5 +38,7 @@ urlpatterns = [
     path('OrderCSV/',views.OrderCSV,name="OrderCSV"),
     path('wallet/',views.wallet,name='wallet'),
     path('UserdailyDose/',views.UserdailyDose,name="UserdailyDose"),
+    path('userdailydosedetail/<int:id>', views.Userdailydosedetail, name='Userdailydosedetail'),
+
 
 ]

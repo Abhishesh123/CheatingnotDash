@@ -17,6 +17,7 @@
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -45,7 +46,7 @@
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
                <div id="layoutSidenav_nav">
-                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             
@@ -90,7 +91,7 @@
                             ></a>
                             <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                      <a class="nav-link" href="#"><div class="sb-nav-link-icon"></div>
+                                     <a class="nav-link" href="#"><div class="sb-nav-link-icon"></div>
                                Add  Plan</a>
 
                                     <a class="nav-link" href="#"><div class="sb-nav-link-icon"></div>
@@ -141,73 +142,110 @@
             <div id="layoutSidenav_content">
                 <main style="background-color: #ecf0f5;">
                     <div class="container-fluid">
-                        <h1 class="mt-4">User Daily Dose</h1>
+                        <h1 class="mt-4">User Daily Dose Details</h1>
                         <!-- <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Dashboard</li>
                         </ol> -->
-                        
                    
                         <div class="card mb-4">
                             
-                            <div class="row">
-                            <div class="dropdown col-md-2">
-       
-</div>
-<div class="col-md-5">
-    <!-- form action="/userSubscriptionsCSV/"  method="post">
-        {% csrf_token %}
-  
-  <button type="submit" class="btn btn-info">Export</button>
-
-</form> -->
-    </div>
-<div class="col-md-5">
- <!-- <form action="/searchSubscriptions/" method="post">
-                    {% csrf_token %}
- <input type="text" name="search" placeholder="Search user name">
- <button type="submit" class="btn btn-info">Search Now</button>
-</form>
-</div> -->
-
-</div>
+                            
                             <div class="card-body">
                                 <div class="table-responsive">
-                                 <table class="table">
-    <thead>
-        <tr>
-    
-            <th>Username</th>
-            <th> Plan </th>
-            <th>Plan Name</th>
-            <th>Payment Token</th>
-            <th>Created At</th>
-            
+                                   <table class="table">
+                
+                <tbody>          
+                    <tr>
+                        <th>Plan ID</th>
+                        <td>{{Userdose.id}}</td>
+                       
 
+                    </tr>
 
-            <th colspan="3" class="text-center">Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for userdaily in userdailydose %}
-       <tr>
-        <td>{{userdaily.user}}</td>
-        <td>{{userdaily.plan}}</td>
-        <td>{{userdaily.plan_name}}</td>
-        <td>{{userdaily.plan_expire_at}}</td>
-        <td>{{userdaily.payment_token}}</td>
-        <td>{{userdaily.created_at}}</td>
-        
-        <td><a href="/userdailydosedetail/{{userdaily.id}}" rel="noopener noreferrer" class="btn btn-xs btn-primary"  ><i  style="font-size:20px"class="fa fa-eye"></i>
-</a></td>
-       
-       
-        
-       
-       </tr>
-       {% endfor %}
-    </tbody>
-</table>
+                    <tr>
+                        <th>User Name</th>
+                        <td>{{Userdose.user}}</td>
 
+                    </tr>
+
+                    <tr>
+                        <th>Plan </th>
+                        <td>{{Userdose.plan}}</td>
+
+                    </tr>
+                   
+                    <tr>
+                        <th>Plan Name</th>
+                        <td>{{Userdose.plan_name}}</td>
+
+                    </tr>
+                    <tr>
+                        <th>Remaining Hi</th>
+                        <td> 
+{{Userdose.remaining_hi}}</td>
+
+                    </tr>
+                  <tr>
+                        <th>Remaining Likes</th>
+                        <td>{{Userdose.remaining_likes}}</td>
+
+                    </tr>
+                    <tr>
+                        <th>Remaining Hearts</th>
+                        <td>{{Userdose.remaining_hearts}}</td>
+
+                    </tr>
+                    <tr>
+                        <th>Remaining Boosts</th>
+                        <td>{{Userdose.remaining_boosts}}</td>
+
+                    </tr>
+                    <tr>
+                        <th>Remaining Talktime</th>
+                        <td>{{Userdose.remaining_talktime}}</td>
+
+                    </tr>
+                    <tr>
+                        <th>Remaining  Superlikes</th>
+                        <td>{{Userdose.remaining_superlikes}}</td>
+
+                    </tr>
+                    <tr>
+                        <th>Is Active</th>
+                        <td>{{Userdose.is_active}}</td>
+
+                    </tr>
+                    <tr>
+                        <th>Is Expired</th>
+                        <td>{{Userdose.is_expired}}</td>
+
+                    </tr>
+                    <tr>
+                        <th>Plan Expire At</th>
+                        <td>{{Userdose.plan_expire_at}}</td>
+
+                    </tr>
+                     <tr>
+                        <th>Payment Token</th>
+                        <td>{{Userdose.payment_token}}</td>
+
+                    </tr>
+                     <tr>
+                        <th>Created At</th>
+                        <td>{{Userdose.created_at}}</td>
+
+                    </tr>
+                     <tr>
+                        <th>Updated At</th>
+                        <td>{{Userdose.updated_at}}</td>
+
+                    </tr>
+                    
+                </tbody>
+            </table>
+            <div class="text-center">
+    <a href="/UserdailyDose" class="btn btn-primary text-center">Back</a>
+</div>
                                 </div>
                             </div>
                         </div>

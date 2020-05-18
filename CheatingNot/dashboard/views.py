@@ -316,8 +316,9 @@ def UserdailyDose(request):
     UserDaily=UserDailyDose.objects.all()
     return render(request,'userdailydose.html',{'userdailydose':UserDaily})
 
+def Userdailydosedetail(request,id):
 
+    Userdose=UserDailyDose.objects.get(id = id)
+    print(Userdose)
+    return render(request, 'userdosedetails.html', {'Userdose': Userdose})
 
-
-    
-    
