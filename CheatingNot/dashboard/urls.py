@@ -39,6 +39,7 @@ urlpatterns = [
     path('wallet/',views.wallet,name='wallet'),
     path('UserdailyDose/',views.UserdailyDose,name="UserdailyDose"),
     path('userdailydosedetail/<int:id>', views.Userdailydosedetail, name='Userdailydosedetail'),
+    path('searchdailydose/',views.searchdailydose,name='searchdailydose')
 
 
 ]
