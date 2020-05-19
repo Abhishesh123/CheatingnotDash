@@ -325,7 +325,7 @@ def Userdailydosedetail(request,id):
 def searchdailydose(request):
     if request.method == 'POST':
         data = request.POST['searchdailydose']
-        user  = UserDailyDose.objects.filter(dob__icontains= data) or UserDailyDose.objects.filter(phone_no__icontains= data)
+        user  = UserDailyDose.objects.filter(plan_name__icontains= data) or UserDailyDose.objects.filter(plan_expire_at__icontains= data)
 
 
 def dailydoseCSV(request):
