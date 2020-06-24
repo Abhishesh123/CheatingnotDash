@@ -97,7 +97,7 @@ class OTPMixin(object):
         
     def create_otp_record(self,data):
         try:
-            user = Anonymous.objects.get(phone_no=data['phone_no'])
+            user = Anonymous.objects.get(phone_no=data)
         except:
             user = None
         if user:

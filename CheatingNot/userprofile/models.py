@@ -104,13 +104,15 @@ class Anonymous(models.Model):
     
 class OTP(models.Model):
     user = models.OneToOneField(Anonymous, on_delete=models.CASCADE)
+    
+
     otp = models.CharField(max_length=10, null=True, blank=True)
     otp_expire_at = models.DateTimeField(null=True, blank=True)
     create_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.phone_no
+        return self.user
     
 class UserprofileImages(models.Model):
     """  images for particular user """

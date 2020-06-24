@@ -1,0 +1,666 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>CheatingNot :Find Your Friend</title>
+<link rel="stylesheet" href="{% static 'css/cheat.css' %}">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+
+<style type="text/css">
+	/*body {
+  background-image: url('{% static '/assets/img/dating.jpg' %}');
+  
+}*/
+#heading {
+	padding-top: 250px;
+	padding-left: 200px;
+	color: #ffffff;
+	font-size:70px;
+}
+.button {
+  color: #FF00A4;
+  background-color: #fff;
+  border: none;
+
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 16px;
+}
+
+.button:hover {
+  background-color: #f1f1f1;
+}
+/* Full-width input fields */
+.phonebox {
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.Continuebutton {
+  background-color: #FF00A4;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+/* Set a style for all buttons */
+/*button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+*/
+/* Extra styles for the cancel button */
+.boxtext {
+	text-align: center;
+
+}
+h1 {
+  text-align: center;
+  font-family: Tahoma, Arial, sans-serif;
+  color: #06D85F;
+  margin: 80px 0;
+}
+
+.textcenter{
+	text-align: center;
+}
+.img1 {
+	height: 50px;
+	width: 150px;
+}
+.dif{
+	margin-top: 40px;
+}
+.dif1{
+	margin-top: 45px;
+}
+.dif2{
+	margin-top: 20%;
+	margin-left: 20%;
+}
+.box {
+  width: 40%;
+  margin: 0 auto;
+  background: rgba(255,255,255,0.2);
+  padding: 35px;
+  border: 2px solid #fff;
+  border-radius: 20px/50px;
+  background-clip: padding-box;
+  text-align: center;
+}
+
+.button {
+  font-size: 1em;
+  padding: 10px;
+  color: #FF00A4;
+  width:10%; 
+  background-color: #fff;
+  border: 2px;
+  border-radius: 20px/50px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+.googlebtn {
+  font-size: 1em;
+  padding: 10px;
+  color: #000000;
+  margin-left:70px;
+  border: 2px solid;
+  border-radius: 20px/50px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+
+.button:hover {
+    color: #fff;
+   background-color: #FF00A4;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  margin: 70px auto;
+  padding: 20px;
+
+  background: #fff;
+  border-radius: 5px;
+  width: 30%;
+  height: 100%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+.popup1 {
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 30%;
+  height: 100%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+.popup22 {
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 30%;
+  height: 100%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+
+.popup h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.popup1 h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.popup22 h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.popup1 .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.popup22 .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.popup .close:hover {
+  color: #06D85F;
+}
+.popup1 .close:hover {
+  color: #06D85F;
+}
+.popup22 .close:hover {
+  color: #06D85F;
+}
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+}
+.popup1 .content {
+  max-height: 30%;
+  overflow: auto;
+}
+.popup22 .content {
+  max-height: 30%;
+  overflow: auto;
+}
+
+
+@media screen and (max-width: 700px){
+  .box{
+    width: 70%;
+  }
+  .popup{
+    width: 70%;
+  }
+}
+
+  .otpbox {
+        margin: 0 5px;
+        text-align: center;
+        line-height: 40px;
+        font-size: 20px;
+        border: solid 1px #ccc;
+        box-shadow: 0 0 5px #ccc inset;
+        outline: none;
+        width: 20%;
+        transition: all .2s ease-in-out;
+        border-radius: 3px;
+        }
+</style>
+
+
+</head>
+<body >
+  <!-- <img src="{% static '/assets/img/cheatingnotlogo.png' %}" style="float:left; margin-top: -30px; " href="#"> -->
+	<!-- <a class="button" style="float:right; margin-top: -30px; " href="#popup1">SIGN UP</a> -->
+
+<!-- <p id='heading'>Join Genuine Friends Network!</p> -->
+
+
+
+<div data-server-rendered="true" id="__nuxt">
+<!---->
+<div id="__layout">
+<div>
+<div>
+<div class="header-container" data-v-0a5c0203>
+   <div class="h-100 w-100 video-background" data-v-3e8e17e1 data-v-0a5c0203>
+      <div class="h-100 w-100 d-block" data-v-3e8e17e1><img src="{% static '/assets/img/dating.jpg' %}" class="h-100 w-100" data-v-3e8e17e1></div><!-- 
+      <video id="video-id-name" autoplay="autoplay" loop="loop" muted="muted" playsinline class="h-100 w-100 d-none" data-v-3e8e17e1> -->
+         <img src="{% static '/assets/img/dating.jpg' %}" >
+         Your browser does not support videos.
+     <!--  </video> -->
+   </div>
+   <div class="overlay w-100 h-100" data-v-0a5c0203></div>
+   <div class="mt-3 index-5" data-v-8b7ff552 data-v-0a5c0203>
+      <!----> 
+      <div class="container-fluid" data-v-8b7ff552>
+         <div class="row white-navbar" data-v-8b7ff552>
+            <div class="col-lg-3 col-6" data-v-8b7ff552>
+               <a href="/en-GB/" data-v-8b7ff552>
+                  <img data-src="/images/V3/logo-mark.png" data-srcset="/images/V3/logo-mark@2x.png 2x, /images/V3/logo-mark@3x.png 3x" class="lazyload ml-lg-3 navbar__butterfly" data-v-8b7ff552> <!---->
+               </a>
+            </div>
+            <div class="col-lg-6 col-0 white-navbar__links justify-content-around d-none d-lg-flex" data-v-8b7ff552><a href="#" class="fade-a text-white" data-v-8b7ff552>About</a> <a href="#" class="fade-a text-white" data-v-8b7ff552>Help</a> <a href="#" class="fade-a text-white" data-v-8b7ff552>Gold</a> <a href="#" class="fade-a text-white" data-v-8b7ff552>Blog</a> <a href="/en-GB/careers" class="fade-a text-white" data-v-8b7ff552>Careers</a></div>
+            <div class="col-lg-3 col-6 white-navbar__social" data-v-8b7ff552>
+            	<button type="button" class="hamburger hamburger--elastic d-lg-none" data-v-01c61d37 data-v-8b7ff552>
+            		<span class="hamburger-box" data-v-01c61d37>
+            			<span class="hamburger-inner" data-v-01c61d37>
+            				
+            			</span>
+            		</span>
+            	</button> 
+            	<a href="#popup1" class="text-decoration-none mr-4 d-none d-lg-block" data-v-8b7ff552>
+            	<button class="btn-gradient px-4 py-1" data-v-4b6fb633 data-v-8b7ff552>Sign Up</button></a></div>
+         </div>
+      </div>
+   </div>
+   <div class="header-content w-100 d-flex flex-column justify-content-center align-items-center" data-v-0a5c0203>
+      <img data-src="/images/V3/logo-white.png" data-srcset="/images/V3/logo-white@2x.png 2x, /images/V3/logo-white@3x.png 3x" class="lazyload logo-muzmatch" data-v-0dbc22e2 data-v-0a5c0203> 
+      <h1 class="titleBigWhite header-content__title" data-v-36443587 data-v-0a5c0203>
+         Making new friend online every day
+      </h1>
+      <div class="container-buttons d-flex justify-content-center flex-wrap mt-lg-0" data-v-0a5c0203>
+      	<a target="_blank" href="#" class="margin mb-2" data-v-5932151c>
+      	<img src="{% static '/assets/img/apple1.png' %}" data-srcset="{% static '/assets/img/apple1.png' %}" class="lazyload width scale-button" data-v-5932151c>
+      </a> 
+      <a target="_blank" href="https://play.google.com/store/apps/details?id=com.cheatingnot&hl=en_IN" class="margin" data-v-27addc7e>
+      	<img src="{% static '/assets/img/playstore.png' %}" data-srcset="{% static '/assets/img/playstore.png' %}" class="lazyload width scale-button" data-v-27addc7e>
+      </a>
+  </div>
+      <a href="#stats" data-v-0a5c0203><img src="{% static '/assets/img/iconcaret.png' %}" data-srcset="{% static '/assets/img/iconcart.png' %}" class="lazyload caret" data-v-0a5c0203></a>
+   </div>
+</div>
+<div class="container">
+   <div class="row justify-content-around flex-column-reverse mt-5 mb-4 mb-lg-5 flex-lg-row-reverse" data-v-a4eb10a2>
+      <div class="col-12 col-lg-6 d-flex flex-column justify-content-center align-items-lg-start text-center text-lg-left" data-v-a4eb10a2>
+         <div class="mobile-disable" data-v-08911cac data-v-a4eb10a2>
+            <div class="d-flex flex-column justify-content-end" data-v-08911cac data-v-a4eb10a2><img src="{% static '/assets/img/couple.svg' %}" alt="Illustration: Couple taking a selfie" class="lazyload mb-4 max-height-illustration d-none d-lg-block" data-v-08911cac data-v-a4eb10a2></div>
+         </div>
+         <div class="mobile-disable" data-v-08911cac data-v-a4eb10a2>
+            <h2 class="w-100" data-v-08911cac data-v-a4eb10a2>
+               Free, and fun
+            </h2>
+         </div>
+         <div class="mobile-disable" data-v-08911cac data-v-a4eb10a2>
+            <p class="my-4" data-v-08911cac data-v-a4eb10a2>
+               CheatingNot is the world’s biggest community for single  to find their perfect firend.Free to use and fun! Start your journey today.
+            </p>
+         </div>
+         <!---->
+      </div>
+      <div class="col-12 col-lg-5 justify-content-center align-items-center d-flex" data-v-a4eb10a2>
+         <div class="position-relative mb-4" data-v-a4eb10a2>
+            <div class="rotate-right" data-v-a4eb10a2><img src="{% static '/assets/img/phone22.png' %}" data-srcset="{% static '/assets/img/phone22.png' %}" alt="Phone screen: It's a muzmatch!" class="animated fadeInUp lazyload image-phone image-phone-2 image-phone-2-right" data-v-a4eb10a2></div>
+            <div class="mobile-disable" data-v-08911cac data-v-a4eb10a2><img src="{% static '/assets/img/phone11.png' %}" data-srcset="{% static '/assets/img/phone11.png' %}" alt="Phone screen: Discover screen" class="lazyload image-phone image-phone-1 image-phone-1-right" data-v-08911cac data-v-a4eb10a2></div>
+         </div>
+      </div>
+   </div>
+   <div class="row justify-content-around flex-column-reverse mt-5 mb-4 mb-lg-5 flex-lg-row" data-v-a4eb10a2>
+      <div class="col-12 col-lg-6 d-flex flex-column justify-content-center align-items-lg-start text-center text-lg-left" data-v-a4eb10a2>
+         <div class="mobile-disable" data-v-08911cac data-v-a4eb10a2>
+            <div class="d-flex flex-column justify-content-end" data-v-08911cac data-v-a4eb10a2><img src="{% static '/assets/img/couple1.svg' %}" alt="Illustration: Man sending a message to a woman" class="lazyload mb-4 max-height-illustration" data-v-08911cac data-v-a4eb10a2></div>
+         </div>
+         <div class="mobile-disable" data-v-08911cac data-v-a4eb10a2>
+            <h2 class="w-100" data-v-08911cac data-v-a4eb10a2>
+               Chat for free
+            </h2>
+         </div>
+         <div class="mobile-disable" data-v-08911cac data-v-a4eb10a2>
+            <p class="my-4" data-v-08911cac data-v-a4eb10a2>
+               It is always free to swipe, match, chat  on .
+            </p>
+         </div>
+         <!---->
+      </div>
+    
+      <div class="col-12 col-lg-5 justify-content-center align-items-center d-flex" data-v-a4eb10a2>
+         <div class="position-relative mb-4" data-v-a4eb10a2>
+            <div class="rotate-right" data-v-a4eb10a2><img src="{% static '/assets/img/man.png' %}" data-srcset="{% static '/assets/img/man.png' %}" alt="Phone screen: A woman video calling a man" class="animated fadeInUp lazyload image-phone image-phone-2 image-phone-2-right" data-v-a4eb10a2></div>
+            <div class="mobile-disable" data-v-08911cac data-v-a4eb10a2><img src="{% static '/assets/img/woman1.png' %}" data-srcset="{% static '/assets/img/man.png' %}" alt="Phone screen: A man video calling a woman" class="lazyload image-phone image-phone-1 image-phone-1-right" data-v-08911cac data-v-a4eb10a2></div>
+         </div>
+      </div>
+   </div>
+  
+</div>
+<!--  -->
+
+<div class="bg-grey w-100 py-5" data-v-3a68c532>
+   <div class="container" data-v-3a68c532>
+      <div class="row text-center" data-v-3a68c532>
+         <div class="w-100" data-v-3a68c532>
+            <p class="mb-5" data-v-3a68c532>
+               What our users say
+            </p>
+            <div class="container" data-v-3a68c532>
+               <div class="row" data-v-3a68c532></div>
+               <div class="row" data-v-3a68c532>
+                  <div class="container-buttons d-flex justify-content-center flex-wrap mt-lg-0 justify-content-center w-100"><a target="_blank" href="#" class="margin mb-2" data-v-5932151c><img src="{% static '/assets/img/apple1.png' %}" data-srcset="/images/V3/badge-apple@2x.png 2x, /images/V3/badge-apple@3x.png 3x" class="lazyload width scale-button" data-v-5932151c></a> <a target="_blank" href="https://play.google.com/store/apps/details?id=com.cheatingnot&hl=en_IN" class="margin" data-v-27addc7e><img src="{% static '/assets/img/playstore.png' %}" data-srcset="/images/V3/badge-google@2x.png 2x, /images/V3/badge-google@3x.png 3x" class="lazyload width scale-button" data-v-27addc7e></a></div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+
+<div class="container">
+   <div class="row justify-content-around flex-column-reverse mt-5 mb-4 mb-lg-5 flex-lg-row-reverse" data-v-a4eb10a2>
+      <div class="col-12 col-lg-6 d-flex flex-column justify-content-center align-items-lg-start text-center text-lg-left" data-v-a4eb10a2>
+         <div class="mobile-disable" data-v-08911cac data-v-a4eb10a2>
+            <div class="d-flex flex-column justify-content-end" data-v-08911cac data-v-a4eb10a2><img src="{% static '/assets/img/gold.svg' %}" alt="Illustration: A couple dressed in gold" class="lazyload mb-4 max-height-illustration d-none d-lg-block" data-v-08911cac data-v-a4eb10a2></div>
+         </div>
+         <div class="mobile-disable" data-v-08911cac data-v-a4eb10a2>
+            <h2 class="w-100 text-gold" data-v-08911cac data-v-a4eb10a2>
+               Cheatingnot Gold
+            </h2>
+         </div>
+         <div class="mobile-disable" data-v-08911cac data-v-a4eb10a2>
+            <p class="my-4" data-v-08911cac data-v-a4eb10a2>
+               Get Friends quicker with Cheatingnot Gold. Our Gold subscription unlocks features designed to get you Friends quicker.
+            </p>
+         </div>
+         <div class="mobile-disable" data-v-08911cac data-v-a4eb10a2><a href="/en-US/gold" data-v-a4eb10a2><button type="button" class="btn btn-gold text-white my-3 py-3 px-4" data-v-68a49097 data-v-a4eb10a2>
+            Find out more
+            </button></a>
+         </div>
+      </div>
+      <div class="col-12 col-lg-5 justify-content-center align-items-center d-flex" data-v-a4eb10a2>
+         <div class="position-relative mb-4" data-v-a4eb10a2>
+            <div class="rotate-right" data-v-a4eb10a2><img src="{% static '/assets/img/phones14.png' %}" data-srcset="{% static '/assets/img/phones14.@2x.png 2x' %},{% static '/assets/img/phones14.@3x.png 3x' %}" alt="Phone screen: Chat screen" class="animated fadeInUp lazyload image-phone image-phone-2 image-phone-2-right" data-v-a4eb10a2></div>
+            <div class="mobile-disable" data-v-08911cac data-v-a4eb10a2><img src="{% static '/assets/img/phones13.png' %}" data-srcset="{% static '/assets/img/phones13.@2x.png 2x' %},{% static '/assets/img/phones13.@3x.png 3x' %}" alt="Phone screen: Gold Filters" class="lazyload image-phone image-phone-1 image-phone-1-right" data-v-08911cac data-v-a4eb10a2></div>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="bg-grey w-100 py-5" data-v-3a68c532>
+   <div class="container" data-v-3a68c532>
+      <div class="row text-center" data-v-3a68c532>
+         <div class="w-100 mb-4" data-v-3a68c532>
+            <h1 class="titleBigBlack mx-2">
+               FIND A TRUE FRIEND AND A LIFE-LONG FRIENDSHIP
+            </h1>
+         </div>
+         <p class="font m-0 justify-content-center mb-4 px-4" data-v-975423a8>
+            Our aim is to make the best and biggest friend-safe community app in the world to make friends and free chat without sharing their numbers. It does not matter who you are? & where you are from? If you agree with our terms & conditions then you are excellent to join us and have fun. All our chatting and other services are free for one month with our sign up bonus amount, after one month you may go for prime plans.
+         </p>
+         <p class="font m-0 justify-content-center mb-4 px-4" data-v-975423a8>
+           Once you become a registered member of app; make match and you can like, super-like, chat, audio calling and video calling and so on. We have unique stickers, greetings, and scratch cards to experience friendship lovely and healthy.
+
+
+         </p>
+         <p class="font m-0 justify-content-center mb-4 px-4" data-v-975423a8>
+            We have a boosting option wherein you can highlight your profile on a priority basis. Emotions, Dialogues, Songs, etc., are additional keys to enjoy the friendship mood.You just need to install the CheatingNot mobile app to use our fantastic services on your smartphone. We support all mobile phones.
+         </p>
+         <div class="d-flex justify-content-center w-100 mt-3" data-v-3a68c532>
+            <div class="mx-1" data-v-3a68c532><a target="_blank" href="#" data-v-5932151c><img src="{% static '/assets/img/apple1.png' %}" data-srcset="/images/V3/badge-apple@2x.png 2x, /images/V3/badge-apple@3x.png 3x" class="lazyload width scale-button" data-v-5932151c></a></div>
+            <div class="mx-1" data-v-3a68c532><a target="_blank" href="#" data-v-27addc7e><img src="{% static '/assets/img/playstore.png' %}" data-srcset="/images/V3/badge-google@2x.png 2x, /images/V3/badge-google@3x.png 3x" class="lazyload width scale-button" data-v-27addc7e></a></div>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="footer-container p-lg-5 p-4" data-v-42570b11>
+<div class="container" data-v-42570b11>
+<div class="row" data-v-42570b11>
+<div class="col-md-1 my-md-0" data-v-42570b11><a href="/en-US/" class="d-md-block d-none" data-v-42570b11><img src="{% static '/assets/img/cheatingnotlogo.png' %}" data-srcset="/images/V3/logo-mark@2x.png 2x, /images/V3/logo-mark@3x.png 3x" class="lazyload butterfly-logo" data-v-42570b11></a>
+</div>
+<div class="footer-col-2 col-md-2 col-6 my-3 my-md-0 d-flex flex-column justify-content-end text-center text-lg-left" data-v-42570b11>
+<a href="https://www.instagram.com/cheatingnot/?hl=en" target="_blank" data-v-42570b11></a>
+</div>
+<div id="popup1" class="overlay textcenter">
+	<div class="popup">
+		<img src="{% static '/assets/img/cheatingnotlogo.png' %}"  href="#">
+		<a class="close" href="#">&times;</a>
+		<div class="content dif">
+			By clicking, you agree to our <a  href="#">Terms;</a>. Learn how we process your data in our <a  href="#">Privacy Policy;</a><a  href="#"> Cookie Policy;</a> 
+		</div>
+		<div class="row dif">
+		<a class="googlebtn"   href="#">
+			
+				<img  src="{% static '/assets/img/google.svg' %}">
+			
+			
+				LOGIN WITH GOOGLE
+			
+			
+		</a>
+	</div>
+	<div class="row dif1">
+		<a class="googlebtn"   href="#popup2">
+
+				LOGIN WITH PHONE No.
+		</a>
+	</div>
+		<div class="row dif2">
+			<h2 >GET THE APP !</h2>
+			
+			<a   href="#">
+			<img class="img1" src="{% static '/assets/img/apple.png' %}">
+		</a>
+
+	
+		<a    href="https://play.google.com/store/apps/details?id=com.cheatingnot&hl=en_IN">
+			<img class="img1" src="{% static '/assets/img/googleplay.png' %}">
+		</a>
+	
+		</div>
+	</div>
+</div>
+<div id="popup2" class="overlay textcenter">
+	<div class="popup1">
+		<form id="btnonOtp"  method="POST">
+			{% csrf_token %}
+			<img  class="dif"src="{% static '/assets/img/cheatingnotlogo.png' %}"  href="#">
+  <h6>Enter your mobile number</h6>
+		<a class="close" href="#">&times;</a>
+  <input type="tel" class="phonebox" id="phone" name="phone_no" placeholder="8744865366"  required><br><br>
+
+  <div class="content dif">
+			When you tap "Continue", Cheatingnot will send a text with a verification code. Message and data rates may apply. The verified phone number can be used to login.
+		</div>
+  <!-- 
+  <a href="#popup3"  id="btnonOtp" class="Continuebutton dif1"  > Continue</a> -->
+    <input type="submit" onclick="window.location.href = '#popup3'; " id="btnonOtp" class="Continuebutton dif1" value="Continue">
+
+</form>
+
+
+
+		</div>
+	</div>
+            
+  <div id="popup3" class="overlay textcenter">
+	<div class="popup22">
+		<form action="/VerifyOTP/" method="POST">
+			{% csrf_token %}
+			<img  class="dif"src="{% static '/assets/img/cheatingnotlogo.png' %}"  href="#">
+  <h6>Enter your  code number</h6>
+		<a class="close" href="#">&times;</a>
+		<input type="tel" class="phonebox" id="otp" name="otp"   required><br><br>
+		 <input type="hidden" id="phones" name="phones" value="">
+
+      <!-- <input class="otpbox" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+      <input type="text" class="otpbox" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+      <input type="text" class="otpbox" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+      <input type="text"  class="otpbox"maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+       -->
+   
+    
+    <div>
+      Didn't receive the code?<br />
+      <a href="#">Send code again</a><br />
+      
+    </div>
+
+  <div class="content dif">
+			When you tap "Continue", Cheatingnot will send a text with a verification code. Message and data rates may apply. The verified phone number can be used to login.
+		</div>
+  
+  <input type="submit" class="Continuebutton dif1" value="Continue">
+</form>
+
+
+		</div>
+	</div> 
+  <script type="text/javascript">
+  var phones="";
+    $('#btnonOtp').click(function(){
+      var phone=$('#phone').val();
+      phones=phone;
+    $.ajax({
+        url:"/Login/",
+        type:'POST',
+        data:
+        {
+            phone_no:phone,
+            csrfmiddlewaretoken: '{{ csrf_token }}'
+
+            
+        },
+       
+        dataType: "json",
+
+        success: function(msg)
+        {
+            alert('OTP Sent');
+        }               
+    });
+});
+
+
+  </script>    
+  <script type="text/javascript">
+    $('#btnonOtp').click(function(){
+    
+var textOne = $('#phone').val();
+
+        $('input[name="phones"]').val(textOne);
+
+
+
+});
+
+  </script>    
+      <script type="text/javascript">
+      	$(function() {
+  'use strict';
+
+  var body = $('body');
+
+  function goToNextInput(e) {
+    var key = e.which,
+      t = $(e.target),
+      sib = t.next('input');
+
+    if (key != 9 && (key < 48 || key > 57)) {
+      e.preventDefault();
+      return false;
+    }
+
+    if (key === 9) {
+      return true;
+    }
+
+    if (!sib || !sib.length) {
+      sib = body.find('input').eq(0);
+    }
+    sib.select().focus();
+  }
+
+  function onKeyDown(e) {
+    var key = e.which;
+
+    if (key === 9 || (key >= 48 && key <= 57)) {
+      return true;
+    }
+
+    e.preventDefault();
+    return false;
+  }
+  
+  function onFocus(e) {
+    $(e.target).select();
+  }
+
+  body.on('keyup', 'input', goToNextInput);
+  body.on('keydown', 'input', onKeyDown);
+  body.on('click', 'input', onFocus);
+
+})
+      </script>     
+
+</body>
+</html>

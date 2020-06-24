@@ -331,7 +331,7 @@ def searchdailydose(request):
 def dailydoseCSV(request):
 
     # Get all data from UserDetail Databse Table
-    dose = UserDailyDose.objects.all()
+    doses = UserDailyDose.objects.all()
 
     # Create the HttpResponse object with the appropriate CSV header.
     response = HttpResponse(content_type='text/csv')
@@ -341,6 +341,6 @@ def dailydoseCSV(request):
     writer.writerow(['User', 'Plan', 'Plan Name', 'Remaining Hi','Remaining Likes','Remaining Hearts','Remaining Boosts','Remaining Talktime','Remaining Superlikes','Is active','Is Expired','Plan Expire At','Payment Token'])
 
     for dose in doses:
-        writer.writerow([dose.user, dose.plan,dose.plan_name,dose.remaining_hi,dose.remaining_likes,dose.remaining_hearts,dose.remaining_boosts,dose.remaining_talktime,dose.remaining_superlikes,dose.is_active,dose.is_expired,dose.plan_expire_at,dose.Payment Token])
+        writer.writerow([dose.user, dose.plan,dose.plan_name,dose.remaining_hi,dose.remaining_likes,dose.remaining_hearts,dose.remaining_boosts,dose.remaining_talktime,dose.remaining_superlikes,dose.is_active,dose.is_expired,dose.plan_expire_at,dose.payment_token])
 
     return response
