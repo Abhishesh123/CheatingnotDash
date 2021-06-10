@@ -13,7 +13,7 @@ cycler==0.10.0
 decorator==4.4.2
 distlib==0.3.0
 djadmin==1.1.6
-Django==1.11.26
+Django==2.2.24
 django-videothumbs==0.91
 enum34==1.1.10
 filelock==3.0.12
